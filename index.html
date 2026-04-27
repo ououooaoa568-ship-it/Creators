@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>INDIGO CREATORS</title>
+    <style>
+        /* Бело-синий дизайн-код */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
+
+        :root {
+            --bg-color: #f4f7fb;
+            --surface: #ffffff;
+            --primary: #1976d2;
+            --primary-glow: rgba(25, 118, 210, 0.4);
+            --accent: #00b0ff;
+            --accent-glow: rgba(0, 176, 255, 0.4);
+            --text-main: #1a237e;
+            --text-muted: #5c6bc0;
+            --danger: #e53935;
+            --success: #43a047;
+            --gold: #fbc02d;
+            --border-color: #e3f2fd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f4f7fb 50%, #bbdefb 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Темная тема */
+        body.dark-theme {
+            --bg-color: #0d1117;
+            --surface: #161b22;
+            --primary: #58a6ff;
+            --primary-glow: rgba(88, 166, 255, 0.2);
+            --accent: #39d353;
+            --accent-glow: rgba(57, 211, 83, 0.3);
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+            background: var(--bg-color);
+            animation: none; /* Убираем градиент для темной темы */
+        }
+
+        body.dark-theme input[type="text"], 
+        body.dark-theme input[type="password"], 
+        body.dark-theme input[type="number"], 
+        body.dark-theme textarea, 
+        body.dark-theme select {
+            background-color: #0d1117;
+            color: var(--text-main);
+            border-color: var(--border-color);
+        }
+
+        body.dark-theme input:focus, 
+        body.dark-theme textarea:focus {
+            background-color: #161b22;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        body.dark-theme .data-row {
+            background: #161b22;
+            border-color: var(--border-color);
+            border-left-color: var(--primary);
+        }
+        
+        body.dark-theme .data-row:hover {
+            background: #21262d;
+            border-left-color: var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        body.dark-theme .btn-secondary {
+            background: #161b22;
+            color: var(--primary);
+        }
+
+        body.dark-theme .btn-secondary:hover {
+            background: #30363d;
+        }
+
+        body.dark-theme #verify-result {
+            background: rgba(67, 160, 71, 0.1);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background: var(--surface);
+            border-bottom: 2px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(25, 118, 210, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px var(--primary-glow);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            animation: fadeIn 0.4s ease-out;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 { font-size: 20px; margin-bottom: 15px; color: var(--primary); font-weight: 800; }
+        h3 { font-size: 16px; margin-bottom: 10px; color: var(--text-main); font-weight: 600; }
+        p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 15px; font-weight: 400;}
+
+        input[type="text"], input[type="password"], input[type="number"], textarea, select {
+            width: 100%;
+            background-color: #f9fbfd;
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input::placeholder, textarea::placeholder { color: #9fa8da; font-weight: 400; }
+
+        input:focus, textarea:focus { 
+            border-color: var(--accent); 
+            background-color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        textarea { resize: vertical; min-height: 120px; }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .checkbox-container input {
+            width: auto;
+            margin: 3px 0 0 0;
+            accent-color: var(--primary);
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active { transform: translateY(1px); }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: #e3f2fd;
+        }
+
+        .btn-danger { 
+            background: var(--danger); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+        }
+        
+        .btn-success { 
+            background: var(--success); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(67, 160, 71, 0.3);
+        }
+
+        .hidden { display: none !important; }
+
+        /* Галочки и бейджи */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 12px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .badge-lvl1 { display: none; }
+        .badge-lvl2 { background-color: var(--accent); color: white; font-weight: bold; }
+        .badge-lvl3 { background-color: var(--gold); color: #fff; font-weight: 900; box-shadow: 0 0 10px rgba(251, 192, 45, 0.5); }
+        
+        .badge-approved {
+            background-color: var(--success);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-left: 10px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(67, 160, 71, 0.4);
+        }
+
+        .data-row {
+            background: #f9fbfd;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary);
+            border-right: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.2s, background-color 0.3s, border-color 0.3s;
+        }
+        
+        .data-row:hover {
+            transform: translateX(3px);
+            border-left-color: var(--accent);
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .post-author { font-weight: 800; color: var(--primary); margin-bottom: 8px; display: block; font-size: 15px;}
+        .post-content { font-size: 14px; color: var(--text-main); word-break: break-word; font-weight: 600; line-height: 1.5; }
+        .admin-controls { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .admin-controls button { width: auto; flex-grow: 1; padding: 10px; font-size: 12px; margin-bottom: 0; }
+
+        #logout-btn { background: transparent; color: var(--danger); border: 2px solid var(--danger); width: auto; padding: 10px 20px; font-size: 12px; margin-top: 10px; border-radius: 20px;}
+        #logout-btn:hover { background: var(--danger); color: white; }
+
+        #global-news {
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px var(--primary-glow);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 2px 10px var(--primary-glow); }
+            to { box-shadow: 0 6px 20px var(--accent-glow); }
+        }
+
+        #initial-loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 24px;
+            transition: opacity 0.5s;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="initial-loader">ЗАГРУЗКА...</div>
+
+<header style="position: relative;">
+    <h1>INDIGO CREATORS</h1>
+    <button id="theme-toggle" class="btn-secondary" style="position: absolute; right: 20px; top: 15px; width: auto; padding: 8px 15px; font-size: 12px; margin: 0; border-radius: 8px;">🌙 Тема</button>
+</header>
+
+<div class="container">
+
+    <div id="screen-auth" class="card hidden">
+        <h2 id="auth-title">Вход в систему</h2>
+        <p>Войдите или создайте аккаунт для доступа к закрытой платформе креаторов.</p>
+        
+        <input type="text" id="auth-login" placeholder="Придумайте логин (например, HotSami)" autocomplete="off">
+        <input type="password" id="auth-pass" placeholder="Пароль">
+        
+        <button id="btn-login" class="btn-primary">Войти</button>
+        <button id="btn-register" class="btn-secondary">Создать аккаунт</button>
+        <p id="auth-error" style="color: var(--danger); text-align: center; margin-top: 10px; display: none; font-weight: bold;"></p>
+    </div>
+
+    <div id="screen-main" class="hidden">
+        
+        <div id="global-news" class="hidden"></div>
+
+        <div class="card">
+            <h2>Добро пожаловать, <span id="main-username" style="color: var(--primary);"></span> <span id="main-badge"></span></h2>
+            <p style="font-size: 15px; color: var(--text-main); font-weight: 600;">Ваш уровень: <strong id="main-level" style="color: var(--accent);">1</strong> | Опыт: <strong id="main-xp" style="color: var(--success);">0</strong> XP</p>
+            <p id="status-text" style="color: var(--success); font-weight: 800;"></p>
+            
+            <button id="nav-btn-verify" class="btn-secondary hidden">Стать креатором (Верификация)</button>
+            <button id="nav-btn-dashboard" class="btn-primary">Предложить работу / Арт</button>
+            <button id="nav-btn-admin" class="btn-danger hidden">Панель Администратора</button>
+        </div>
+
+        <div class="card">
+            <h2>Лента работ</h2>
+            <p>Новые идеи и арты, опубликованные пользователями. Одобренные администрацией получают значок.</p>
+            <div id="main-feed-list">
+                <p style="text-align: center; color: var(--text-muted);">Загрузка ленты...</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Доска успехов</h2>
+            <p>Топ креаторов платформы.</p>
+            <div id="leaderboard-list">
+                <p style="text-align: center; color: var(--text-muted);">Загрузка креаторов...</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <button id="logout-btn">Выйти из аккаунта</button>
+        </div>
+    </div>
+
+    <div id="screen-verify" class="card hidden">
+        <h2>Заявка на верификацию</h2>
+        <p>Для получения статуса креатора заполните форму ниже. Требуется от 1,000 подписчиков в TikTok.</p>
+        
+        <input type="text" id="ver-tiktok" placeholder="Ваш никнейм в TikTok (без @)">
+        <input type="number" id="ver-subs" placeholder="Количество подписчиков (минимум 1 000)">
+        <input type="number" id="ver-age" placeholder="Сколько вам полных лет?">
+        
+        <label class="checkbox-container">
+            <input type="checkbox" id="ver-rules">
+            <span>Я соглашаюсь с правилами платформы и обязуюсь вести себя адекватно. Понимаю, что за нарушения могу быть заблокирован.</span>
+        </label>
+        
+        <button id="btn-send-verify" class="btn-primary">Отправить заявку</button>
+        <button id="btn-back-from-verify" class="btn-secondary">Назад</button>
+        
+        <div id="verify-result" class="hidden" style="margin-top: 15px; padding: 15px; border-radius: 12px; border: 2px solid var(--success);">
+            <p style="color: var(--success); font-weight: 800; margin-bottom: 5px;">Заявка успешно отправлена!</p>
+            <p style="color: var(--success);">Ожидайте проверки администрацией. Для ускорения процесса можете написать создателю в TikTok: <strong>@sami_2284</strong></p>
+        </div>
+        <p id="verify-error" style="color: var(--danger); margin-top: 10px; display: none; font-weight: bold;"></p>
+    </div>
+
+    <div id="screen-dashboard" class="card hidden">
+        <h2>Мастерская</h2>
+        <p>Публикуйте идеи, предложения или арты. Они сразу появятся в общей ленте. Если администрация их оценит, вы получите опыт (XP) и статус одобрения!</p>
+        
+        <textarea id="post-text" placeholder="Опишите вашу крутую идею или вставьте ссылку на арт..."></textarea>
+        <button id="btn-send-post" class="btn-primary">Опубликовать</button>
+        <button id="btn-back-from-dash" class="btn-secondary">На главную</button>
+    </div>
+
+    <div id="screen-admin" class="hidden">
+        
+        <div class="card" style="border-color: var(--primary);">
+            <h2 style="color: var(--primary);">Глобальное объявление</h2>
+            <input type="text" id="admin-news-text" placeholder="Текст объявления для всех пользователей...">
+            <div style="display: flex; gap: 10px;">
+                <button onclick="window.adminSetNews()" class="btn-primary">Опубликовать</button>
+                <button onclick="window.adminClearNews()" class="btn-danger">Удалить объявление</button>
+            </div>
+        </div>
+
+        <div class="card" style="border-color: var(--danger);">
+            <h2 style="color: var(--danger);">Заявки на верификацию</h2>
+            <div id="admin-verify-list">
+                <p>Нет новых заявок.</p>
+            </div>
+        </div>
+
+        <div class="card" style="border-color: var(--accent);">
+            <h2 style="color: var(--accent);">Управление постами (Лента)</h2>
+            <p>Все публикации. Можно одобрить (добавить галочку) или удалить.</p>
+            <div id="admin-queue-list">
+                <p>Нет публикаций.</p>
+            </div>
+        </div>
+
+        <div class="card" style="border-color: var(--text-main);">
+            <h2 style="color: var(--text-main);">Управление Пользователями</h2>
+            <input type="text" id="admin-target-user" placeholder="Введите точный логин пользователя">
+            
+            <h3>1. Уровни и права:</h3>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                <button onclick="window.adminSetLevel(1)" class="btn-secondary">Ур. 1</button>
+                <button onclick="window.adminSetLevel(2)" class="btn-secondary" style="border-color: var(--accent); color: var(--accent);">Ур. 2</button>
+                <button onclick="window.adminSetLevel(3)" class="btn-secondary" style="border-color: var(--gold); color: var(--gold);">Ур. 3</button>
+            </div>
+            <button onclick="window.adminMakeAdmin()" class="btn-primary" style="margin-bottom: 15px;">Сделать Админом</button>
+
+            <h3>2. Опыт (XP):</h3>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button onclick="window.adminAddXP(20)" class="btn-success">+20 XP</button>
+                <button onclick="window.adminAddXP(50)" class="btn-success">+50 XP</button>
+                <button onclick="window.adminAddXP(-20)" class="btn-danger">-20 XP (Штраф)</button>
+            </div>
+
+            <h3>3. Модерация:</h3>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="window.adminBanUser()" class="btn-danger">Заблокировать</button>
+                <button onclick="window.adminUnbanUser()" class="btn-secondary">Разблокировать</button>
+            </div>
+
+            <p id="admin-action-msg" style="color: var(--success); margin-top: 15px; font-weight: bold;"></p>
+        </div>
+        
+        <button id="btn-back-from-admin" class="btn-secondary" style="border-color: var(--text-main); color: var(--text-main);">Выйти из панели</button>
+    </div>
+
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getDatabase, ref, set, get, update, onValue, push, remove } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+    // Конфиг Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyBibm3WdlizStSJtZqavOfCt101d-yGel8",
+        authDomain: "creator-9e387.firebaseapp.com",
+        projectId: "creator-9e387",
+        storageBucket: "creator-9e387.firebasestorage.app",
+        messagingSenderId: "578866489114",
+        appId: "1:578866489114:web:a73576879727dc6f89eea3",
+        measurementId: "G-SPTXP6N7BF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    let currentUser = null;
+
+    // --- ЛОГИКА ТЕМНОЙ ТЕМЫ ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        themeToggle.innerText = '☀️ Тема';
+    }
+
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        let theme = 'light';
+        themeToggle.innerText = '🌙 Тема';
+        
+        if (document.body.classList.contains('dark-theme')) {
+            theme = 'dark';
+            themeToggle.innerText = '☀️ Тема';
+        }
+        localStorage.setItem('theme', theme);
+    });
+
+    // --- УТИЛИТЫ ---
+    function hideAllScreens() {
+        document.getElementById('screen-auth').classList.add('hidden');
+        document.getElementById('screen-main').classList.add('hidden');
+        document.getElementById('screen-verify').classList.add('hidden');
+        document.getElementById('screen-dashboard').classList.add('hidden');
+        document.getElementById('screen-admin').classList.add('hidden');
+    }
+
+    function showError(elementId, msg) {
+        const el = document.getElementById(elementId);
+        el.innerText = msg;
+        el.style.display = 'block';
+        setTimeout(() => el.style.display = 'none', 4000);
+    }
+
+    function showSuccess(elementId, msg) {
+        const el = document.getElementById(elementId);
+        el.innerText = msg;
+        el.style.display = 'block';
+        el.style.color = 'var(--success)';
+        setTimeout(() => { el.style.display = 'none'; el.style.color = 'var(--danger)'; }, 4000);
+    }
+
+    // --- АВТОРИЗАЦИЯ И СЕССИЯ ---
+    document.getElementById('btn-register').addEventListener('click', async () => {
+        const login = document.getElementById('auth-login').value.trim();
+        const pass = document.getElementById('auth-pass').value.trim();
+
+        if (!login || !pass) return showError('auth-error', 'Заполните логин и пароль!');
+        if (login.includes('/') || login.includes('.') || login.includes('#')) {
+            return showError('auth-error', 'Логин содержит запрещенные символы!');
+        }
+
+        const userRef = ref(db, 'users/' + login);
+        const snapshot = await get(userRef);
+
+        if (snapshot.exists()) return showError('auth-error', 'Пользователь с таким логином уже существует!');
+
+        let role = 'user';
+        if (login === 'HotSami' && pass === '101010_paR') role = 'admin';
+
+        const userData = { username: login, password: pass, role: role, level: 1, xp: 0, status: 'new' };
+        await set(userRef, userData);
+        loginUser(userData);
+    });
+
+    document.getElementById('btn-login').addEventListener('click', async () => {
+        const login = document.getElementById('auth-login').value.trim();
+        const pass = document.getElementById('auth-pass').value.trim();
+
+        if (!login || !pass) return showError('auth-error', 'Введите логин и пароль!');
+
+        const userRef = ref(db, 'users/' + login);
+        const snapshot = await get(userRef);
+
+        if (!snapshot.exists()) return showError('auth-error', 'Аккаунт не найден!');
+        const data = snapshot.val();
+        
+        if (data.status === 'banned') return showError('auth-error', 'Ваш аккаунт заблокирован администрацией!');
+        if (data.password !== pass) return showError('auth-error', 'Неверный пароль!');
+
+        loginUser(data);
+    });
+
+    function loginUser(userData) {
+        currentUser = userData;
+        localStorage.setItem('indigoSession', userData.username);
+        
+        onValue(ref(db, 'users/' + userData.username), (snapshot) => {
+            if(snapshot.exists()) {
+                const data = snapshot.val();
+                if (data.status === 'banned') {
+                    alert('Ваш аккаунт был заблокирован!');
+                    document.getElementById('logout-btn').click();
+                    return;
+                }
+                currentUser = data;
+                updateMainScreenUI();
+            }
+        });
+
+        hideAllScreens();
+        document.getElementById('screen-main').classList.remove('hidden');
+        loadLeaderboard();
+        loadMainFeed();
+        loadGlobalNews();
+    }
+
+    window.onload = async () => {
+        const loader = document.getElementById('initial-loader');
+        const savedSession = localStorage.getItem('indigoSession');
+        
+        if (savedSession) {
+            try {
+                const snapshot = await get(ref(db, 'users/' + savedSession));
+                if (snapshot.exists() && snapshot.val().status !== 'banned') {
+                    loginUser(snapshot.val());
+                } else {
+                    localStorage.removeItem('indigoSession');
+                    document.getElementById('screen-auth').classList.remove('hidden');
+                }
+            } catch (e) {
+                document.getElementById('screen-auth').classList.remove('hidden');
+            }
+        } else {
+            document.getElementById('screen-auth').classList.remove('hidden');
+        }
+        
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 500);
+    };
+
+    document.getElementById('logout-btn').addEventListener('click', () => {
+        currentUser = null;
+        localStorage.removeItem('indigoSession');
+        hideAllScreens();
+        document.getElementById('auth-login').value = '';
+        document.getElementById('auth-pass').value = '';
+        document.getElementById('screen-auth').classList.remove('hidden');
+    });
+
+    // --- ГЛАВНЫЙ ЭКРАН ---
+    function updateMainScreenUI() {
+        document.getElementById('main-username').innerText = currentUser.username;
+        document.getElementById('main-level').innerText = currentUser.level;
+        document.getElementById('main-xp').innerText = currentUser.xp;
+
+        let badgeHtml = '';
+        if (currentUser.level === 2) badgeHtml = '<span class="badge badge-lvl2">✓</span>';
+        if (currentUser.level >= 3) badgeHtml = '<span class="badge badge-lvl3">✔</span>';
+        document.getElementById('main-badge').innerHTML = badgeHtml;
+
+        const btnVerify = document.getElementById('nav-btn-verify');
+        const btnAdmin = document.getElementById('nav-btn-admin');
+        const statusText = document.getElementById('status-text');
+
+        btnVerify.classList.add('hidden');
+        btnAdmin.classList.add('hidden');
+        statusText.innerText = '';
+
+        if (currentUser.role === 'admin') btnAdmin.classList.remove('hidden');
+
+        if (currentUser.status === 'verified' || currentUser.level >= 2) {
+            statusText.innerText = 'Вы официальный креатор!';
+        } else if (currentUser.status === 'pending') {
+            statusText.innerText = 'Заявка на верификацию на рассмотрении...';
+            statusText.style.color = 'var(--gold)';
+        } else {
+            btnVerify.classList.remove('hidden');
+        }
+    }
+
+    function loadGlobalNews() {
+        onValue(ref(db, 'system/news'), (snap) => {
+            const newsBox = document.getElementById('global-news');
+            if (snap.exists() && snap.val() !== '') {
+                newsBox.innerHTML = `<strong>ВАЖНО:</strong> ${snap.val()}`;
+                newsBox.classList.remove('hidden');
+            } else {
+                newsBox.classList.add('hidden');
+            }
+        });
+    }
+
+    function loadMainFeed() {
+        onValue(ref(db, 'posts'), (snapshot) => {
+            const list = document.getElementById('main-feed-list');
+            list.innerHTML = '';
+            if (!snapshot.exists()) {
+                list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Пока нет публикаций. Будьте первыми!</p>';
+                return;
+            }
+
+            let postsArr = [];
+            snapshot.forEach(child => postsArr.push({ id: child.key, ...child.val() }));
+            postsArr.sort((a, b) => b.timestamp - a.timestamp); // Новые сверху
+
+            postsArr.forEach(post => {
+                let badge = post.status === 'approved' ? '<span class="badge-approved">Одобрено админом ✓</span>' : '';
+                list.innerHTML += `
+                    <div class="data-row">
+                        <span class="post-author">${post.author} ${badge}</span>
+                        <div class="post-content">${post.content}</div>
+                    </div>
+                `;
+            });
+        });
+    }
+
+    function loadLeaderboard() {
+        onValue(ref(db, 'users'), (snapshot) => {
+            const list = document.getElementById('leaderboard-list');
+            list.innerHTML = '';
+            if (!snapshot.exists()) return;
+
+            let usersArr = [];
+            snapshot.forEach(child => {
+                const u = child.val();
+                if(u.level > 1 || u.xp > 0) usersArr.push(u);
+            });
+
+            usersArr.sort((a, b) => {
+                if (b.level !== a.level) return b.level - a.level;
+                return b.xp - a.xp;
+            });
+
+            if (usersArr.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Пока нет креаторов с достижениями.</p>';
+                return;
+            }
+
+            usersArr.forEach(u => {
+                let badge = '';
+                if(u.level === 2) badge = '<span class="badge badge-lvl2">✓</span>';
+                if(u.level >= 3) badge = '<span class="badge badge-lvl3">✔</span>';
+
+                list.innerHTML += `
+                    <div class="data-row">
+                        <strong style="color: var(--primary); font-size: 16px;">${u.username} ${badge}</strong>
+                        <div style="font-size: 13px; color: var(--text-muted); margin-top: 5px; font-weight: 600;">
+                            Уровень: <span style="color: var(--accent);">${u.level}</span> | Опыт: <span style="color: var(--success);">${u.xp} XP</span>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+    }
+
+    // --- НАВИГАЦИЯ ---
+    document.getElementById('nav-btn-verify').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-verify').classList.remove('hidden'); });
+    document.getElementById('nav-btn-dashboard').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-dashboard').classList.remove('hidden'); });
+    document.getElementById('nav-btn-admin').addEventListener('click', () => { 
+        hideAllScreens(); 
+        document.getElementById('screen-admin').classList.remove('hidden');
+        loadAdminQueue();
+        loadAdminVerifications();
+    });
+    document.getElementById('btn-back-from-verify').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-main').classList.remove('hidden'); });
+    document.getElementById('btn-back-from-dash').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-main').classList.remove('hidden'); });
+    document.getElementById('btn-back-from-admin').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-main').classList.remove('hidden'); });
+
+    // --- ПУБЛИКАЦИЯ ---
+    document.getElementById('btn-send-post').addEventListener('click', async () => {
+        const text = document.getElementById('post-text').value.trim();
+        if (!text) return;
+
+        await push(ref(db, 'posts'), {
+            author: currentUser.username,
+            content: text,
+            timestamp: Date.now(),
+            status: 'new'
+        });
+
+        document.getElementById('post-text').value = '';
+        alert("Ваша работа опубликована в общей ленте!");
+        hideAllScreens();
+        document.getElementById('screen-main').classList.remove('hidden');
+    });
+
+    // --- ВЕРИФИКАЦИЯ ---
+    document.getElementById('btn-send-verify').addEventListener('click', async () => {
+        const tiktok = document.getElementById('ver-tiktok').value.trim();
+        const subs = parseInt(document.getElementById('ver-subs').value) || 0;
+        const age = parseInt(document.getElementById('ver-age').value) || 0;
+        const rulesAgreed = document.getElementById('ver-rules').checked;
+
+        if (!tiktok || !subs || !age) return showError('verify-error', 'Заполните все поля!');
+        if (!rulesAgreed) return showError('verify-error', 'Вы должны согласиться с правилами!');
+        if (subs < 1000) return showError('verify-error', 'Отказ: Необходимо минимум 1 000 подписчиков!');
+
+        await update(ref(db, 'users/' + currentUser.username), {
+            status: 'pending', tiktokLink: tiktok, subsCount: subs, age: age
+        });
+
+        document.getElementById('verify-result').classList.remove('hidden');
+        document.getElementById('verify-error').style.display = 'none';
+        document.getElementById('btn-send-verify').classList.add('hidden');
+    });
+
+    // --- ПАНЕЛЬ АДМИНА ---
+    function loadAdminVerifications() {
+        onValue(ref(db, 'users'), (snapshot) => {
+            const list = document.getElementById('admin-verify-list');
+            list.innerHTML = '';
+            let hasPending = false;
+            
+            if (!snapshot.exists()) return;
+
+            snapshot.forEach(child => {
+                const u = child.val();
+                if (u.status === 'pending') {
+                    hasPending = true;
+                    list.innerHTML += `
+                        <div class="data-row">
+                            <span class="post-author">Юзер: ${u.username}</span>
+                            <div class="post-content">
+                                <strong>TikTok:</strong> ${u.tiktokLink}<br>
+                                <strong>Подписчики:</strong> ${u.subsCount}<br>
+                                <strong>Возраст:</strong> ${u.age}
+                            </div>
+                            <div class="admin-controls">
+                                <button class="btn-success" onclick="window.adminApproveVerify('${u.username}')">Одобрить (Ур. 1)</button>
+                                <button class="btn-danger" onclick="window.adminRejectVerify('${u.username}')">Отклонить</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            if (!hasPending) list.innerHTML = '<p>Нет новых заявок.</p>';
+        });
+    }
+
+    function loadAdminQueue() {
+        onValue(ref(db, 'posts'), (snapshot) => {
+            const list = document.getElementById('admin-queue-list');
+            list.innerHTML = '';
+            if (!snapshot.exists()) {
+                list.innerHTML = '<p>Нет публикаций.</p>';
+                return;
+            }
+
+            let postsArr = [];
+            snapshot.forEach(child => postsArr.push({ id: child.key, ...child.val() }));
+            postsArr.sort((a, b) => b.timestamp - a.timestamp);
+
+            postsArr.forEach(post => {
+                const isAppr = post.status === 'approved';
+                const btnHtml = isAppr 
+                    ? `<button class="btn-secondary" disabled>Уже одобрено</button>` 
+                    : `<button class="btn-success" onclick="window.adminApprovePost('${post.id}', '${post.author}')">Одобрить (+20 XP)</button>`;
+                
+                list.innerHTML += `
+                    <div class="data-row">
+                        <span class="post-author">Автор: ${post.author}</span>
+                        <div class="post-content">${post.content}</div>
+                        <div class="admin-controls">
+                            ${btnHtml}
+                            <button class="btn-danger" onclick="window.adminRejectPost('${post.id}')">Удалить</button>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+    }
+
+    // Глобальные методы админки
+    window.adminApproveVerify = async (username) => await update(ref(db, 'users/' + username), { status: 'verified', level: 1 });
+    window.adminRejectVerify = async (username) => await update(ref(db, 'users/' + username), { status: 'new' });
+    
+    window.adminApprovePost = async (postId, authorName) => {
+        await update(ref(db, 'posts/' + postId), { status: 'approved' });
+        const uRef = ref(db, 'users/' + authorName);
+        const snap = await get(uRef);
+        if (snap.exists()) await update(uRef, { xp: (snap.val().xp || 0) + 20 });
+    };
+    window.adminRejectPost = async (postId) => await remove(ref(db, 'posts/' + postId));
+
+    window.adminSetNews = async () => {
+        const text = document.getElementById('admin-news-text').value.trim();
+        if (text) {
+            await set(ref(db, 'system/news'), text);
+            document.getElementById('admin-news-text').value = '';
+            showSuccess('admin-action-msg', 'Объявление опубликовано!');
+        }
+    };
+    window.adminClearNews = async () => {
+        await remove(ref(db, 'system/news'));
+        showSuccess('admin-action-msg', 'Объявление удалено!');
+    };
+
+    window.adminSetLevel = async (newLevel) => {
+        const t = document.getElementById('admin-target-user').value.trim();
+        if (!t) return showError('admin-action-msg', 'Введите логин!');
+        const uRef = ref(db, 'users/' + t);
+        const snap = await get(uRef);
+        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
+        await update(uRef, { level: newLevel, status: newLevel >= 2 ? 'verified' : snap.val().status });
+        showSuccess('admin-action-msg', `Уровень ${newLevel} выдан!`);
+    };
+
+    window.adminAddXP = async (amount) => {
+        const t = document.getElementById('admin-target-user').value.trim();
+        if (!t) return showError('admin-action-msg', 'Введите логин!');
+        const uRef = ref(db, 'users/' + t);
+        const snap = await get(uRef);
+        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
+        let newXp = (snap.val().xp || 0) + amount;
+        if (newXp < 0) newXp = 0;
+        await update(uRef, { xp: newXp });
+        showSuccess('admin-action-msg', `XP изменено!`);
+    };
+
+    window.adminMakeAdmin = async () => {
+        const t = document.getElementById('admin-target-user').value.trim();
+        if (!t) return showError('admin-action-msg', 'Введите логин!');
+        const uRef = ref(db, 'users/' + t);
+        const snap = await get(uRef);
+        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
+        await update(uRef, { role: 'admin' });
+        showSuccess('admin-action-msg', `Права админа выданы!`);
+    };
+
+    window.adminBanUser = async () => {
+        const t = document.getElementById('admin-target-user').value.trim();
+        if (!t) return showError('admin-action-msg', 'Введите логин!');
+        const uRef = ref(db, 'users/' + t);
+        const snap = await get(uRef);
+        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
+        if (snap.val().role === 'admin') return showError('admin-action-msg', 'Нельзя забанить админа!');
+        await update(uRef, { status: 'banned' });
+        showSuccess('admin-action-msg', `Пользователь заблокирован!`);
+    };
+
+    window.adminUnbanUser = async () => {
+        const t = document.getElementById('admin-target-user').value.trim();
+        if (!t) return showError('admin-action-msg', 'Введите логин!');
+        const uRef = ref(db, 'users/' + t);
+        const snap = await get(uRef);
+        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
+        await update(uRef, { status: 'new' });
+        showSuccess('admin-action-msg', `Пользователь разблокирован!`);
+    };
+
+</script>
+
+</body>
+</html>
