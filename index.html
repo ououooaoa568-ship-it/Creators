@@ -5,22 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>INDIGO CREATORS</title>
     <style>
-        /* Бело-синий дизайн-код */
+        /* Стеклянный дизайн-код (Glassmorphism) */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
 
         :root {
-            --bg-color: #f4f7fb;
-            --surface: #ffffff;
-            --primary: #1976d2;
-            --primary-glow: rgba(25, 118, 210, 0.4);
-            --accent: #00b0ff;
-            --accent-glow: rgba(0, 176, 255, 0.4);
-            --text-main: #1a237e;
-            --text-muted: #5c6bc0;
-            --danger: #e53935;
-            --success: #43a047;
-            --gold: #fbc02d;
-            --border-color: #e3f2fd;
+            --bg-color-1: #1e1b4b;
+            --bg-color-2: #312e81;
+            --bg-color-3: #1e40af;
+            --bg-color-4: #0f172a;
+            --surface: rgba(255, 255, 255, 0.1);
+            --surface-hover: rgba(255, 255, 255, 0.15);
+            --primary: #60a5fa;
+            --primary-glow: rgba(96, 165, 250, 0.5);
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --gold: #fbbf24;
+            --border-color: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        /* Темы оформления */
+        body.theme-dark {
+            --bg-color-1: #050505; --bg-color-2: #111; --bg-color-3: #1a1a1a; --bg-color-4: #000;
+            --primary: #a3a3a3; --primary-glow: rgba(163, 163, 163, 0.3);
+            --accent: #d4d4d4; --accent-glow: rgba(212, 212, 212, 0.3);
+        }
+        body.theme-neon {
+            --bg-color-1: #2e004f; --bg-color-2: #4a0080; --bg-color-3: #ff007f; --bg-color-4: #0f172a;
+            --primary: #ff007f; --primary-glow: rgba(255, 0, 127, 0.6);
+            --accent: #00f0ff; --accent-glow: rgba(0, 240, 255, 0.6);
+        }
+        body.theme-ruby {
+            --bg-color-1: #450a0a; --bg-color-2: #7f1d1d; --bg-color-3: #991b1b; --bg-color-4: #2e0000;
+            --primary: #f87171; --primary-glow: rgba(248, 113, 113, 0.6);
+            --accent: #fca5a5; --accent-glow: rgba(252, 165, 165, 0.6);
         }
 
         * {
@@ -32,73 +54,19 @@
         }
 
         body {
-            background: linear-gradient(135deg, #e3f2fd 0%, #f4f7fb 50%, #bbdefb 100%);
+            background: linear-gradient(135deg, var(--bg-color-1) 0%, var(--bg-color-2) 33%, var(--bg-color-3) 66%, var(--bg-color-4) 100%);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
-            transition: background 0.3s, color 0.3s;
+            padding-bottom: 90px;
         }
 
-        /* Темная тема */
-        body.dark-theme {
-            --bg-color: #0d1117;
-            --surface: #161b22;
-            --primary: #58a6ff;
-            --primary-glow: rgba(88, 166, 255, 0.2);
-            --accent: #39d353;
-            --accent-glow: rgba(57, 211, 83, 0.3);
-            --text-main: #c9d1d9;
-            --text-muted: #8b949e;
-            --border-color: #30363d;
-            background: var(--bg-color);
-            animation: none; /* Убираем градиент для темной темы */
-        }
-
-        body.dark-theme input[type="text"], 
-        body.dark-theme input[type="password"], 
-        body.dark-theme input[type="number"], 
-        body.dark-theme textarea, 
-        body.dark-theme select {
-            background-color: #0d1117;
-            color: var(--text-main);
-            border-color: var(--border-color);
-        }
-
-        body.dark-theme input:focus, 
-        body.dark-theme textarea:focus {
-            background-color: #161b22;
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        body.dark-theme .data-row {
-            background: #161b22;
-            border-color: var(--border-color);
-            border-left-color: var(--primary);
-        }
-        
-        body.dark-theme .data-row:hover {
-            background: #21262d;
-            border-left-color: var(--accent);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        body.dark-theme .btn-secondary {
-            background: #161b22;
-            color: var(--primary);
-        }
-
-        body.dark-theme .btn-secondary:hover {
-            background: #30363d;
-        }
-
-        body.dark-theme #verify-result {
-            background: rgba(67, 160, 71, 0.1);
+        body.animated-bg {
+            animation: gradientBG 15s ease infinite;
         }
 
         @keyframes gradientBG {
@@ -111,9 +79,11 @@
             width: 100%;
             padding: 20px;
             text-align: center;
-            background: var(--surface);
-            border-bottom: 2px solid var(--border-color);
-            box-shadow: 0 4px 20px rgba(25, 118, 210, 0.1);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             position: sticky;
             top: 0;
             z-index: 10;
@@ -123,7 +93,7 @@
             font-size: 26px;
             font-weight: 900;
             letter-spacing: 2px;
-            color: var(--primary);
+            color: var(--text-main);
             text-transform: uppercase;
             text-shadow: 0 2px 10px var(--primary-glow);
         }
@@ -140,12 +110,34 @@
 
         .card {
             background: var(--surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--glass-shadow);
             border: 1px solid var(--border-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
             animation: fadeIn 0.4s ease-out;
             position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+            transform: skewX(-25deg);
+            animation: shine 8s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
         }
 
         @keyframes fadeIn {
@@ -153,14 +145,15 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h2 { font-size: 20px; margin-bottom: 15px; color: var(--primary); font-weight: 800; }
-        h3 { font-size: 16px; margin-bottom: 10px; color: var(--text-main); font-weight: 600; }
+        h2 { font-size: 20px; margin-bottom: 15px; color: var(--primary); font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        h3 { font-size: 16px; margin-bottom: 10px; color: var(--accent); font-weight: 600; }
         p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 15px; font-weight: 400;}
 
         input[type="text"], input[type="password"], input[type="number"], textarea, select {
             width: 100%;
-            background-color: #f9fbfd;
-            border: 2px solid var(--border-color);
+            background-color: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-color);
             color: var(--text-main);
             padding: 15px;
             border-radius: 12px;
@@ -171,13 +164,19 @@
             transition: all 0.3s;
         }
 
-        input::placeholder, textarea::placeholder { color: #9fa8da; font-weight: 400; }
+        input::placeholder, textarea::placeholder { color: rgba(255, 255, 255, 0.4); font-weight: 400; }
 
-        input:focus, textarea:focus { 
+        input:focus, textarea:focus, select:focus { 
             border-color: var(--accent); 
-            background-color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.5);
             box-shadow: 0 0 15px var(--accent-glow);
         }
+        
+        select option {
+            background-color: var(--bg-color-4);
+            color: white;
+        }
+
         textarea { resize: vertical; min-height: 120px; }
 
         .checkbox-container {
@@ -207,13 +206,15 @@
             font-weight: 800;
             text-transform: uppercase;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
             margin-bottom: 10px;
             letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, var(--primary), var(--accent));
+            background: linear-gradient(45deg, rgba(96, 165, 250, 0.8), rgba(56, 189, 248, 0.8));
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
             box-shadow: 0 4px 15px var(--primary-glow);
         }
@@ -221,50 +222,64 @@
         .btn-primary:hover {
             box-shadow: 0 6px 20px var(--accent-glow);
             transform: translateY(-2px);
+            background: linear-gradient(45deg, rgba(96, 165, 250, 1), rgba(56, 189, 248, 1));
         }
 
-        .btn-primary:active { transform: translateY(1px); }
-
         .btn-secondary {
-            background: var(--surface);
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
         }
         
         .btn-secondary:hover {
-            background: #e3f2fd;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
         }
 
         .btn-danger { 
-            background: var(--danger); 
+            background: rgba(239, 68, 68, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white; 
-            box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
         }
         
         .btn-success { 
-            background: var(--success); 
+            background: rgba(34, 197, 94, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white; 
-            box-shadow: 0 4px 15px rgba(67, 160, 71, 0.3);
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
         }
 
         .hidden { display: none !important; }
 
-        /* Галочки и бейджи */
+        /* Улучшенные значки верификации */
         .badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            font-size: 12px;
+            font-size: 13px;
             margin-left: 6px;
             vertical-align: middle;
+            text-shadow: none;
+            border: 1px solid rgba(255,255,255,0.4);
         }
 
         .badge-lvl1 { display: none; }
-        .badge-lvl2 { background-color: var(--accent); color: white; font-weight: bold; }
-        .badge-lvl3 { background-color: var(--gold); color: #fff; font-weight: 900; box-shadow: 0 0 10px rgba(251, 192, 45, 0.5); }
+        .badge-lvl2 { 
+            background: linear-gradient(135deg, #38bdf8, #0284c7); 
+            color: white; 
+            font-weight: bold; 
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+        .badge-lvl3 { 
+            background: linear-gradient(135deg, #fbbf24, #d97706); 
+            color: #fff; 
+            font-weight: 900; 
+            box-shadow: 0 0 15px rgba(251, 192, 45, 0.6); 
+        }
         
         .badge-approved {
             background-color: var(--success);
@@ -277,26 +292,35 @@
             vertical-align: middle;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 2px 5px rgba(67, 160, 71, 0.4);
+            box-shadow: 0 2px 5px rgba(34, 197, 94, 0.4);
         }
 
         .data-row {
-            background: #f9fbfd;
+            background: rgba(0, 0, 0, 0.2);
             padding: 15px;
             border-radius: 12px;
             margin-bottom: 12px;
             border-left: 4px solid var(--primary);
-            border-right: 1px solid var(--border-color);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            transition: transform 0.2s, background-color 0.3s, border-color 0.3s;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s, background 0.2s;
         }
         
         .data-row:hover {
             transform: translateX(3px);
             border-left-color: var(--accent);
-            background: #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Кликабельный ник */
+        .clickable-nick {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .clickable-nick:hover {
+            color: var(--accent) !important;
+            text-decoration: underline;
         }
 
         .post-author { font-weight: 800; color: var(--primary); margin-bottom: 8px; display: block; font-size: 15px;}
@@ -304,19 +328,24 @@
         .admin-controls { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
         .admin-controls button { width: auto; flex-grow: 1; padding: 10px; font-size: 12px; margin-bottom: 0; }
 
-        #logout-btn { background: transparent; color: var(--danger); border: 2px solid var(--danger); width: auto; padding: 10px 20px; font-size: 12px; margin-top: 10px; border-radius: 20px;}
-        #logout-btn:hover { background: var(--danger); color: white; }
+        #logout-btn { background: transparent; color: var(--danger); border: 1px solid var(--danger); width: auto; padding: 10px 20px; font-size: 12px; margin-top: 10px; border-radius: 20px;}
+        #logout-btn:hover { background: rgba(239, 68, 68, 0.2); }
 
+        /* Таймер новостей */
         #global-news {
-            background: linear-gradient(45deg, var(--accent), var(--primary));
+            background: linear-gradient(45deg, rgba(56, 189, 248, 0.7), rgba(96, 165, 250, 0.7));
+            backdrop-filter: blur(10px);
             color: white;
             padding: 15px;
             border-radius: 12px;
             font-weight: 600;
             margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
             box-shadow: 0 4px 15px var(--primary-glow);
             animation: pulseGlow 2s infinite alternate;
+            text-align: center;
         }
+        .news-timer { font-size: 20px; font-weight: 900; color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.5); margin-top: 10px; }
 
         @keyframes pulseGlow {
             from { box-shadow: 0 2px 10px var(--primary-glow); }
@@ -324,175 +353,378 @@
         }
 
         #initial-loader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            color: var(--primary);
-            font-weight: 900;
-            font-size: 24px;
-            transition: opacity 0.5s;
-            letter-spacing: 2px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color-4); display: flex; justify-content: center; align-items: center;
+            z-index: 9999; color: var(--primary); font-weight: 900; font-size: 24px; transition: opacity 0.5s; letter-spacing: 2px;
         }
+
+        /* Система вкладок (Табы) */
+        .tabs-header {
+            display: flex;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 10px var(--primary-glow);
+        }
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+
+        /* Нижняя панель навигации */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-color); display: flex;
+            justify-content: space-around; align-items: center;
+            padding: 12px 0; padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            z-index: 1000; box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; color: var(--text-muted); cursor: pointer;
+            transition: 0.3s; font-size: 11px; font-weight: 600; gap: 6px;
+        }
+        .nav-item svg { width: 24px; height: 24px; fill: currentColor; transition: transform 0.2s; }
+        .nav-item:hover { color: var(--text-main); }
+        .nav-item.active { color: var(--primary); text-shadow: 0 0 10px var(--primary-glow); }
+        .nav-item.active svg { filter: drop-shadow(0 0 5px var(--primary-glow)); }
+
+        /* Капча */
+        .captcha-container {
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            margin-bottom: 15px; background: rgba(0,0,0,0.2); padding: 15px;
+            border-radius: 12px; border: 1px solid var(--border-color);
+        }
+        #captcha-canvas { background: #fff; border-radius: 8px; cursor: pointer; }
+
+        /* Модальные окна (Профиль, Покупки) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px);
+            z-index: 2000; display: flex; justify-content: center; align-items: center;
+            padding: 20px;
+        }
+        .modal-box {
+            background: var(--bg-color-4); border: 1px solid var(--primary);
+            padding: 25px; border-radius: 20px; max-width: 400px; width: 100%;
+            box-shadow: 0 0 30px var(--primary-glow); text-align: center;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute; top: 10px; right: 15px; font-size: 24px;
+            color: var(--text-muted); cursor: pointer; font-weight: 900;
+        }
+        .close-modal:hover { color: var(--danger); }
+
+        /* Аватарки */
+        .avatar {
+            width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--primary); box-shadow: 0 0 15px var(--primary-glow);
+            background-color: rgba(255,255,255,0.1); margin: 0 auto 15px auto;
+        }
+
     </style>
 </head>
-<body>
+<body class="animated-bg">
 
 <div id="initial-loader">ЗАГРУЗКА...</div>
 
-<header style="position: relative;">
+<header>
     <h1>INDIGO CREATORS</h1>
-    <button id="theme-toggle" class="btn-secondary" style="position: absolute; right: 20px; top: 15px; width: auto; padding: 8px 15px; font-size: 12px; margin: 0; border-radius: 8px;">🌙 Тема</button>
 </header>
 
-<div class="container">
+<div class="container" id="main-container">
 
-    <div id="screen-auth" class="card hidden">
-        <h2 id="auth-title">Вход в систему</h2>
-        <p>Войдите или создайте аккаунт для доступа к закрытой платформе креаторов.</p>
+    <div id="screen-auth" class="card">
         
-        <input type="text" id="auth-login" placeholder="Придумайте логин (например, HotSami)" autocomplete="off">
-        <input type="password" id="auth-pass" placeholder="Пароль">
-        
-        <button id="btn-login" class="btn-primary">Войти</button>
-        <button id="btn-register" class="btn-secondary">Создать аккаунт</button>
+        <div id="auth-main-view">
+            <div class="tabs-header">
+                <div class="tab-btn active" onclick="switchAuthTab('login')">Вход</div>
+                <div class="tab-btn" onclick="switchAuthTab('register')">Создать аккаунт</div>
+            </div>
+
+            <input type="text" id="auth-login" placeholder="Логин (например, HotSami)" autocomplete="off">
+            <input type="password" id="auth-pass" placeholder="Пароль">
+            
+            <div class="captcha-container">
+                <p style="margin:0; font-size: 12px;">Введите текст с картинки:</p>
+                <canvas id="captcha-canvas" width="160" height="50" onclick="window.generateCaptcha()"></canvas>
+                <input type="text" id="auth-captcha" placeholder="Текст с картинки" style="margin-bottom: 0;">
+            </div>
+            
+            <button id="btn-login-action" class="btn-primary" onclick="handleLogin()">Войти</button>
+            <button id="btn-register-action" class="btn-primary hidden" onclick="handleRegister()">Зарегистрироваться</button>
+        </div>
+
+        <div id="auth-pin-view" class="hidden">
+            <h2 style="text-align: center; color: var(--accent);">Защита аккаунта</h2>
+            <p style="text-align: center;">Введите ваш ПИН-код для входа.</p>
+            <input type="password" id="auth-pin-input" placeholder="ПИН-код" style="text-align: center; font-size: 20px; letter-spacing: 5px;">
+            <button class="btn-primary" onclick="verifyPinAndLogin()">Подтвердить</button>
+            <button class="btn-secondary" onclick="cancelPinLogin()">Отмена</button>
+        </div>
+
         <p id="auth-error" style="color: var(--danger); text-align: center; margin-top: 10px; display: none; font-weight: bold;"></p>
     </div>
 
     <div id="screen-main" class="hidden">
-        
-        <div id="global-news" class="hidden"></div>
+        <div id="global-news" class="hidden">
+            <div id="news-text"></div>
+            <div id="news-timer" class="news-timer hidden"></div>
+        </div>
 
-        <div class="card">
-            <h2>Добро пожаловать, <span id="main-username" style="color: var(--primary);"></span> <span id="main-badge"></span></h2>
-            <p style="font-size: 15px; color: var(--text-main); font-weight: 600;">Ваш уровень: <strong id="main-level" style="color: var(--accent);">1</strong> | Опыт: <strong id="main-xp" style="color: var(--success);">0</strong> XP</p>
+        <div class="card" style="text-align: center;">
+            <img id="main-avatar" src="https://via.placeholder.com/80/1e1b4b/60a5fa?text=?" class="avatar">
+            <h2><span id="main-username" style="color: var(--primary);"></span> <span id="main-badge"></span></h2>
+            <p id="main-bio" style="font-style: italic; color: var(--text-muted); margin-top:-10px; font-size: 12px;"></p>
+            <p style="font-size: 15px; color: var(--text-main); font-weight: 600;">Уровень: <strong id="main-level" style="color: var(--accent);">1</strong> | Опыт: <strong id="main-xp" style="color: var(--success);">0</strong> XP</p>
             <p id="status-text" style="color: var(--success); font-weight: 800;"></p>
             
-            <button id="nav-btn-verify" class="btn-secondary hidden">Стать креатором (Верификация)</button>
-            <button id="nav-btn-dashboard" class="btn-primary">Предложить работу / Арт</button>
-            <button id="nav-btn-admin" class="btn-danger hidden">Панель Администратора</button>
+            <button id="btn-verify-top" class="btn-secondary hidden" onclick="window.navTo('verify')">Стать креатором (Верификация)</button>
         </div>
 
         <div class="card">
             <h2>Лента работ</h2>
-            <p>Новые идеи и арты, опубликованные пользователями. Одобренные администрацией получают значок.</p>
-            <div id="main-feed-list">
-                <p style="text-align: center; color: var(--text-muted);">Загрузка ленты...</p>
-            </div>
+            <div id="main-feed-list"><p style="text-align: center; color: var(--text-muted);">Загрузка ленты...</p></div>
         </div>
 
         <div class="card">
             <h2>Доска успехов</h2>
-            <p>Топ креаторов платформы.</p>
-            <div id="leaderboard-list">
-                <p style="text-align: center; color: var(--text-muted);">Загрузка креаторов...</p>
-            </div>
-        </div>
-        
-        <div style="text-align: center;">
-            <button id="logout-btn">Выйти из аккаунта</button>
+            <div id="leaderboard-list"><p style="text-align: center; color: var(--text-muted);">Загрузка креаторов...</p></div>
         </div>
     </div>
 
-    <div id="screen-verify" class="card hidden">
-        <h2>Заявка на верификацию</h2>
-        <p>Для получения статуса креатора заполните форму ниже. Требуется от 1,000 подписчиков в TikTok.</p>
+    <div id="screen-settings" class="card hidden">
+        <h2>Настройки</h2>
         
-        <input type="text" id="ver-tiktok" placeholder="Ваш никнейм в TikTok (без @)">
-        <input type="number" id="ver-subs" placeholder="Количество подписчиков (минимум 1 000)">
-        <input type="number" id="ver-age" placeholder="Сколько вам полных лет?">
-        
-        <label class="checkbox-container">
-            <input type="checkbox" id="ver-rules">
-            <span>Я соглашаюсь с правилами платформы и обязуюсь вести себя адекватно. Понимаю, что за нарушения могу быть заблокирован.</span>
-        </label>
-        
-        <button id="btn-send-verify" class="btn-primary">Отправить заявку</button>
-        <button id="btn-back-from-verify" class="btn-secondary">Назад</button>
-        
-        <div id="verify-result" class="hidden" style="margin-top: 15px; padding: 15px; border-radius: 12px; border: 2px solid var(--success);">
-            <p style="color: var(--success); font-weight: 800; margin-bottom: 5px;">Заявка успешно отправлена!</p>
-            <p style="color: var(--success);">Ожидайте проверки администрацией. Для ускорения процесса можете написать создателю в TikTok: <strong>@sami_2284</strong></p>
+        <div class="tabs-header">
+            <div class="tab-btn active" onclick="switchSetTab('account')">Аккаунт</div>
+            <div class="tab-btn" onclick="switchSetTab('appearance')">Оформление</div>
+            <div class="tab-btn" onclick="switchSetTab('security')">Приватность</div>
         </div>
-        <p id="verify-error" style="color: var(--danger); margin-top: 10px; display: none; font-weight: bold;"></p>
+
+        <div id="set-tab-account" class="tab-content active">
+            <h3>Профиль</h3>
+            <input type="text" id="set-avatar" placeholder="Ссылка на фото (URL)">
+            <textarea id="set-bio" placeholder="Расскажите немного о себе..." style="min-height: 80px;"></textarea>
+            <button class="btn-primary" onclick="saveProfileInfo()" style="margin-bottom: 25px;">Сохранить профиль</button>
+
+            <h3>Смена пароля</h3>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
+                <span style="color: var(--text-muted);">Текущий пароль:</span>
+                <span id="show-current-pass" style="color: var(--accent); cursor: pointer;" onclick="togglePassView()">Показать</span>
+            </div>
+            <input type="text" id="current-pass-display" readonly style="display:none; color: var(--gold); text-align: center;">
+            
+            <input type="password" id="set-new-pass" placeholder="Новый пароль">
+            <button class="btn-secondary" onclick="saveNewPassword()" style="margin-bottom: 25px;">Обновить пароль</button>
+
+            <h3>Дополнительный ПИН-код</h3>
+            <p style="font-size: 12px;">Запрашивается при каждом входе.</p>
+            <input type="password" id="set-pin" placeholder="Придумайте ПИН (например 1234)">
+            <button class="btn-secondary" onclick="savePinCode()">Установить ПИН</button>
+            <button class="btn-danger hidden" id="btn-remove-pin" onclick="removePinCode()">Удалить ПИН</button>
+        </div>
+
+        <div id="set-tab-appearance" class="tab-content">
+            <h3>Тема приложения:</h3>
+            <select id="settings-theme" onchange="window.changeTheme()">
+                <option value="default">Индиго (Стандартная)</option>
+                <option value="dark">Темная (Стекло)</option>
+                <option value="neon">Неон (Киберпанк)</option>
+                <option value="ruby">Рубиновый закат</option>
+            </select>
+
+            <label class="checkbox-container" style="margin-top: 20px;">
+                <input type="checkbox" id="settings-anim" checked onchange="window.toggleAnim()">
+                <span>Живая анимация фона</span>
+            </label>
+        </div>
+
+        <div id="set-tab-security" class="tab-content">
+            <h3>Кто может просматривать мой профиль:</h3>
+            <select id="settings-privacy" onchange="savePrivacy()">
+                <option value="all">Все пользователи</option>
+                <option value="verified">Только креаторы (Ур. 2+)</option>
+                <option value="nobody">Никто (Закрытый профиль)</option>
+            </select>
+        </div>
+
+        <p id="settings-msg" style="color: var(--success); font-weight: bold; margin-top: 15px; text-align: center;"></p>
+        <button id="logout-btn" style="margin-top: 30px; width: 100%;">Выйти из аккаунта</button>
     </div>
 
     <div id="screen-dashboard" class="card hidden">
         <h2>Мастерская</h2>
-        <p>Публикуйте идеи, предложения или арты. Они сразу появятся в общей ленте. Если администрация их оценит, вы получите опыт (XP) и статус одобрения!</p>
-        
+        <p>Публикуйте идеи, предложения или арты. Если администрация их оценит, вы получите опыт (XP)!</p>
         <textarea id="post-text" placeholder="Опишите вашу крутую идею или вставьте ссылку на арт..."></textarea>
         <button id="btn-send-post" class="btn-primary">Опубликовать</button>
-        <button id="btn-back-from-dash" class="btn-secondary">На главную</button>
+    </div>
+
+    <div id="screen-store" class="card hidden">
+        <h2 style="color: var(--gold);">CREATORS STORE</h2>
+        <p>Эксклюзивные товары для креаторов.</p>
+        <div id="store-items-list" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;"></div>
+    </div>
+
+    <div id="screen-verify" class="card hidden">
+        <h2>Заявка на верификацию</h2>
+        <input type="text" id="ver-tiktok" placeholder="Ваш никнейм в TikTok/VK">
+        <input type="number" id="ver-subs" placeholder="Количество подписчиков (минимум 10 000)">
+        <input type="number" id="ver-age" placeholder="Сколько вам полных лет?">
+        <label class="checkbox-container">
+            <input type="checkbox" id="ver-rules">
+            <span>Я соглашаюсь с правилами платформы.</span>
+        </label>
+        <button id="btn-send-verify" class="btn-primary">Отправить заявку</button>
+        <div id="verify-result" class="hidden" style="margin-top: 15px; padding: 15px; background: rgba(34, 197, 94, 0.1); border-radius: 12px; border: 1px solid var(--success);">
+            <p style="color: var(--success); font-weight: 800;">Заявка успешно отправлена!</p>
+        </div>
+        <p id="verify-error" style="color: var(--danger); margin-top: 10px; display: none; font-weight: bold;"></p>
     </div>
 
     <div id="screen-admin" class="hidden">
-        
-        <div class="card" style="border-color: var(--primary);">
+        <div class="card" style="border-color: rgba(96, 165, 250, 0.5);">
             <h2 style="color: var(--primary);">Глобальное объявление</h2>
-            <input type="text" id="admin-news-text" placeholder="Текст объявления для всех пользователей...">
+            <input type="text" id="admin-news-text" placeholder="Текст объявления для всех...">
+            
+            <h3 style="margin-top: 10px;">Добавить таймер (необязательно):</h3>
+            <input type="datetime-local" id="admin-news-time" style="margin-bottom: 15px;">
+            
             <div style="display: flex; gap: 10px;">
                 <button onclick="window.adminSetNews()" class="btn-primary">Опубликовать</button>
-                <button onclick="window.adminClearNews()" class="btn-danger">Удалить объявление</button>
+                <button onclick="window.adminClearNews()" class="btn-danger">Удалить</button>
             </div>
         </div>
 
-        <div class="card" style="border-color: var(--danger);">
+        <div class="card" style="border-color: rgba(251, 191, 36, 0.5);">
+            <h2 style="color: var(--gold);">Управление Магазином</h2>
+            <input type="text" id="admin-store-title" placeholder="Название товара">
+            <input type="text" id="admin-store-img" placeholder="Прямая ссылка на картинку">
+            <div style="display: flex; gap: 10px;">
+                <input type="number" id="admin-store-price" placeholder="Цена">
+                <select id="admin-store-currency">
+                    <option value="XP">XP (Опыт)</option>
+                    <option value="RUB">Рубли (₽)</option>
+                </select>
+            </div>
+            <input type="text" id="admin-store-paymethod" placeholder="Способ оплаты">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <select id="admin-store-contact-app" style="margin-bottom: 0;">
+                    <option value="Telegram">Telegram</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="VK">VK</option>
+                </select>
+                <input type="text" id="admin-store-contact-info" placeholder="Контакт" style="margin-bottom: 0;">
+            </div>
+            <h3>Доступно для уровней:</h3>
+            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                <label class="checkbox-container"><input type="checkbox" id="store-lvl1" checked><span>Ур. 1</span></label>
+                <label class="checkbox-container"><input type="checkbox" id="store-lvl2" checked><span>Ур. 2</span></label>
+                <label class="checkbox-container"><input type="checkbox" id="store-lvl3" checked><span>Ур. 3</span></label>
+            </div>
+            <button onclick="window.adminCreateStoreItem()" class="btn-primary" style="background: linear-gradient(45deg, #fbbf24, #f59e0b);">Создать товар</button>
+            <div id="admin-store-list" style="margin-top: 20px;"></div>
+        </div>
+
+        <div class="card" style="border-color: rgba(239, 68, 68, 0.5);">
             <h2 style="color: var(--danger);">Заявки на верификацию</h2>
-            <div id="admin-verify-list">
-                <p>Нет новых заявок.</p>
-            </div>
+            <div id="admin-verify-list"></div>
         </div>
 
-        <div class="card" style="border-color: var(--accent);">
-            <h2 style="color: var(--accent);">Управление постами (Лента)</h2>
-            <p>Все публикации. Можно одобрить (добавить галочку) или удалить.</p>
-            <div id="admin-queue-list">
-                <p>Нет публикаций.</p>
-            </div>
+        <div class="card" style="border-color: rgba(56, 189, 248, 0.5);">
+            <h2 style="color: var(--accent);">Управление постами</h2>
+            <div id="admin-queue-list"></div>
         </div>
 
-        <div class="card" style="border-color: var(--text-main);">
+        <div class="card" style="border-color: rgba(255, 255, 255, 0.3);">
             <h2 style="color: var(--text-main);">Управление Пользователями</h2>
-            <input type="text" id="admin-target-user" placeholder="Введите точный логин пользователя">
-            
-            <h3>1. Уровни и права:</h3>
+            <input type="text" id="admin-target-user" placeholder="Точный логин">
             <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                 <button onclick="window.adminSetLevel(1)" class="btn-secondary">Ур. 1</button>
                 <button onclick="window.adminSetLevel(2)" class="btn-secondary" style="border-color: var(--accent); color: var(--accent);">Ур. 2</button>
                 <button onclick="window.adminSetLevel(3)" class="btn-secondary" style="border-color: var(--gold); color: var(--gold);">Ур. 3</button>
             </div>
             <button onclick="window.adminMakeAdmin()" class="btn-primary" style="margin-bottom: 15px;">Сделать Админом</button>
-
-            <h3>2. Опыт (XP):</h3>
             <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                 <button onclick="window.adminAddXP(20)" class="btn-success">+20 XP</button>
-                <button onclick="window.adminAddXP(50)" class="btn-success">+50 XP</button>
-                <button onclick="window.adminAddXP(-20)" class="btn-danger">-20 XP (Штраф)</button>
+                <button onclick="window.adminAddXP(-20)" class="btn-danger">-20 XP</button>
             </div>
-
-            <h3>3. Модерация:</h3>
             <div style="display: flex; gap: 10px;">
-                <button onclick="window.adminBanUser()" class="btn-danger">Заблокировать</button>
-                <button onclick="window.adminUnbanUser()" class="btn-secondary">Разблокировать</button>
+                <button onclick="window.adminBanUser()" class="btn-danger">Забанить</button>
+                <button onclick="window.adminUnbanUser()" class="btn-secondary">Разбанить</button>
             </div>
-
             <p id="admin-action-msg" style="color: var(--success); margin-top: 15px; font-weight: bold;"></p>
         </div>
-        
-        <button id="btn-back-from-admin" class="btn-secondary" style="border-color: var(--text-main); color: var(--text-main);">Выйти из панели</button>
     </div>
-
 </div>
+
+<div id="user-profile-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+        <span class="close-modal" onclick="closeProfileModal()">&times;</span>
+        <div id="up-content">
+            <img id="up-avatar" src="" class="avatar" style="width: 100px; height: 100px;">
+            <h2 style="margin-bottom: 5px;"><span id="up-username" style="color: var(--primary);"></span> <span id="up-badge"></span></h2>
+            <p id="up-role" style="color: var(--danger); font-size: 12px; font-weight: bold; margin-bottom: 5px;"></p>
+            <p id="up-bio" style="color: var(--text-muted); font-style: italic; font-size: 14px; margin-bottom: 20px;"></p>
+            
+            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px;">
+                <p style="margin-bottom: 5px; color: var(--text-main);">Уровень: <strong id="up-level" style="color: var(--accent);"></strong></p>
+                <p style="margin-bottom: 0; color: var(--text-main);">Опыт: <strong id="up-xp" style="color: var(--success);"></strong> XP</p>
+            </div>
+        </div>
+        <div id="up-error" class="hidden" style="color: var(--danger); font-weight: bold; margin-top: 20px; padding: 20px;">
+            Профиль скрыт настройками приватности.
+        </div>
+    </div>
+</div>
+
+<div id="purchase-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+        <h2 id="pm-title" style="color: var(--gold);">Оформление заказа</h2>
+        <p id="pm-desc" style="margin-bottom: 20px;"></p>
+        <div id="pm-instructions" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; text-align: left;"></div>
+        <button onclick="document.getElementById('purchase-modal').classList.add('hidden')" class="btn-primary">Понятно, закрыть</button>
+    </div>
+</div>
+
+<nav id="bottom-nav" class="bottom-nav hidden">
+    <div class="nav-item active" onclick="window.navTo('main')" id="nav-main">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Главная</span>
+    </div>
+    <div class="nav-item" onclick="window.navTo('store')" id="nav-store">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z"/></svg><span>Магазин</span>
+    </div>
+    <div class="nav-item" onclick="window.navTo('dashboard')" id="nav-dashboard">
+        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><span>Создать</span>
+    </div>
+    <div class="nav-item" onclick="window.navTo('settings')" id="nav-settings">
+        <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg><span>Настройки</span>
+    </div>
+    <div class="nav-item hidden" onclick="window.navTo('admin')" id="nav-admin" style="color: var(--danger);">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg><span>Админ</span>
+    </div>
+</nav>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
     import { getDatabase, ref, set, get, update, onValue, push, remove } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 
-    // Конфиг Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyBibm3WdlizStSJtZqavOfCt101d-yGel8",
         authDomain: "creator-9e387.firebaseapp.com",
@@ -506,79 +738,235 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     let currentUser = null;
+    let expectedCaptcha = "";
+    let tempAuthData = null; // Для временного хранения данных при вводе ПИН
+    let timerInterval = null;
 
-    // --- ЛОГИКА ТЕМНОЙ ТЕМЫ ---
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme');
+    // --- НАСТРОЙКИ (Темы, Анимации, Вкладки) ---
+    window.changeTheme = () => {
+        const theme = document.getElementById('settings-theme').value;
+        document.body.className = theme === 'default' ? '' : 'theme-' + theme;
+        if(document.getElementById('settings-anim').checked) document.body.classList.add('animated-bg');
+        localStorage.setItem('indigoTheme', theme);
+    };
 
-    if (currentTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-        themeToggle.innerText = '☀️ Тема';
+    window.toggleAnim = () => {
+        const isAnim = document.getElementById('settings-anim').checked;
+        if(isAnim) document.body.classList.add('animated-bg');
+        else document.body.classList.remove('animated-bg');
+        localStorage.setItem('indigoAnim', isAnim);
+    };
+
+    function loadSettingsUI() {
+        const savedTheme = localStorage.getItem('indigoTheme') || 'default';
+        const savedAnim = localStorage.getItem('indigoAnim') !== 'false';
+        document.getElementById('settings-theme').value = savedTheme;
+        document.getElementById('settings-anim').checked = savedAnim;
+        window.changeTheme();
     }
 
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme');
-        let theme = 'light';
-        themeToggle.innerText = '🌙 Тема';
-        
-        if (document.body.classList.contains('dark-theme')) {
-            theme = 'dark';
-            themeToggle.innerText = '☀️ Тема';
+    window.switchAuthTab = (type) => {
+        const tabs = document.querySelectorAll('#auth-main-view .tab-btn');
+        tabs.forEach(t => t.classList.remove('active'));
+        if(type === 'login') {
+            tabs[0].classList.add('active');
+            document.getElementById('btn-login-action').classList.remove('hidden');
+            document.getElementById('btn-register-action').classList.add('hidden');
+        } else {
+            tabs[1].classList.add('active');
+            document.getElementById('btn-login-action').classList.add('hidden');
+            document.getElementById('btn-register-action').classList.remove('hidden');
         }
-        localStorage.setItem('theme', theme);
-    });
+    };
 
-    // --- УТИЛИТЫ ---
-    function hideAllScreens() {
-        document.getElementById('screen-auth').classList.add('hidden');
-        document.getElementById('screen-main').classList.add('hidden');
-        document.getElementById('screen-verify').classList.add('hidden');
-        document.getElementById('screen-dashboard').classList.add('hidden');
-        document.getElementById('screen-admin').classList.add('hidden');
+    window.switchSetTab = (tabId) => {
+        const headers = document.querySelectorAll('#screen-settings .tab-btn');
+        const contents = document.querySelectorAll('#screen-settings .tab-content');
+        headers.forEach(h => h.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        
+        event.target.classList.add('active');
+        document.getElementById('set-tab-' + tabId).classList.add('active');
+    };
+
+    // --- ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ И НАСТРОЙКИ АККАУНТА ---
+    function loadUserSettingsToForm() {
+        document.getElementById('set-avatar').value = currentUser.avatar || '';
+        document.getElementById('set-bio').value = currentUser.bio || '';
+        document.getElementById('settings-privacy').value = currentUser.privacy || 'all';
+        document.getElementById('current-pass-display').value = currentUser.password;
+        
+        if (currentUser.pin) {
+            document.getElementById('set-pin').placeholder = 'ПИН-код установлен';
+            document.getElementById('btn-remove-pin').classList.remove('hidden');
+        } else {
+            document.getElementById('set-pin').placeholder = 'Придумайте ПИН (например 1234)';
+            document.getElementById('btn-remove-pin').classList.add('hidden');
+        }
     }
+
+    window.saveProfileInfo = async () => {
+        const avatar = document.getElementById('set-avatar').value.trim();
+        const bio = document.getElementById('set-bio').value.trim();
+        await update(ref(db, 'users/' + currentUser.username), { avatar, bio });
+        showSuccess('settings-msg', 'Профиль обновлен!');
+    };
+
+    window.savePrivacy = async () => {
+        const privacy = document.getElementById('settings-privacy').value;
+        await update(ref(db, 'users/' + currentUser.username), { privacy });
+        showSuccess('settings-msg', 'Настройки приватности сохранены!');
+    };
+
+    window.togglePassView = () => {
+        const d = document.getElementById('current-pass-display');
+        d.style.display = d.style.display === 'none' ? 'block' : 'none';
+    };
+
+    window.saveNewPassword = async () => {
+        const np = document.getElementById('set-new-pass').value.trim();
+        if(!np) return showError('settings-msg', 'Введите пароль!');
+        await update(ref(db, 'users/' + currentUser.username), { password: np });
+        document.getElementById('set-new-pass').value = '';
+        document.getElementById('current-pass-display').value = np;
+        showSuccess('settings-msg', 'Пароль успешно изменен!');
+    };
+
+    window.savePinCode = async () => {
+        const pin = document.getElementById('set-pin').value.trim();
+        if(!pin) return showError('settings-msg', 'Введите ПИН-код!');
+        await update(ref(db, 'users/' + currentUser.username), { pin: pin });
+        document.getElementById('set-pin').value = '';
+        document.getElementById('set-pin').placeholder = 'ПИН-код установлен';
+        document.getElementById('btn-remove-pin').classList.remove('hidden');
+        showSuccess('settings-msg', 'ПИН-код установлен!');
+    };
+
+    window.removePinCode = async () => {
+        await update(ref(db, 'users/' + currentUser.username), { pin: null });
+        document.getElementById('btn-remove-pin').classList.add('hidden');
+        document.getElementById('set-pin').placeholder = 'Придумайте ПИН (например 1234)';
+        showSuccess('settings-msg', 'ПИН-код удален!');
+    };
+
+    // --- МОДАЛЬНОЕ ОКНО ПРОФИЛЯ ---
+    window.openProfile = async (username) => {
+        const modal = document.getElementById('user-profile-modal');
+        const content = document.getElementById('up-content');
+        const err = document.getElementById('up-error');
+        
+        content.classList.add('hidden');
+        err.classList.add('hidden');
+        modal.classList.remove('hidden');
+
+        const snap = await get(ref(db, 'users/' + username));
+        if(!snap.exists()) { err.innerText = "Пользователь не найден"; err.classList.remove('hidden'); return; }
+        
+        const u = snap.val();
+        
+        // Проверка приватности
+        let canView = true;
+        if(u.privacy === 'nobody' && currentUser.role !== 'admin' && currentUser.username !== username) canView = false;
+        if(u.privacy === 'verified' && currentUser.level < 2 && currentUser.role !== 'admin' && currentUser.username !== username) canView = false;
+
+        if(!canView) {
+            err.innerText = "Профиль скрыт настройками приватности.";
+            err.classList.remove('hidden');
+            return;
+        }
+
+        // Рендер
+        document.getElementById('up-avatar').src = u.avatar || 'https://via.placeholder.com/100/1e1b4b/60a5fa?text=?';
+        document.getElementById('up-username').innerText = u.username;
+        document.getElementById('up-role').innerText = u.role === 'admin' ? '[АДМИНИСТРАТОР]' : '';
+        document.getElementById('up-bio').innerText = u.bio || 'Нет описания.';
+        document.getElementById('up-level').innerText = u.level;
+        document.getElementById('up-xp').innerText = u.xp || 0;
+
+        let badge = '';
+        if(u.level === 2) badge = '<span class="badge badge-lvl2">✓</span>';
+        if(u.level >= 3) badge = '<span class="badge badge-lvl3">✔</span>';
+        document.getElementById('up-badge').innerHTML = badge;
+
+        content.classList.remove('hidden');
+    };
+
+    window.closeProfileModal = () => document.getElementById('user-profile-modal').classList.add('hidden');
+
+    // --- КАПЧА ---
+    window.generateCaptcha = () => {
+        const canvas = document.getElementById('captcha-canvas');
+        if(!canvas) return;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#1e293b"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        expectedCaptcha = "";
+        for(let i=0; i<5; i++) expectedCaptcha += chars[Math.floor(Math.random()*chars.length)];
+        ctx.font = "bold 26px Montserrat"; ctx.fillStyle = "#60a5fa";
+        ctx.setTransform(1, Math.random()*0.2-0.1, Math.random()*0.2-0.1, 1, 0, 0);
+        ctx.fillText(expectedCaptcha, 20, 35); ctx.setTransform(1, 0, 0, 1, 0, 0);
+        for(let i=0; i<5; i++) {
+            ctx.beginPath(); ctx.moveTo(Math.random()*canvas.width, Math.random()*canvas.height);
+            ctx.lineTo(Math.random()*canvas.width, Math.random()*canvas.height);
+            ctx.strokeStyle = "rgba(255,255,255,0.4)"; ctx.lineWidth = 2; ctx.stroke();
+        }
+    };
+
+    // --- УТИЛИТЫ НАВИГАЦИИ ---
+    window.navTo = (screenId) => {
+        const screens = ['main', 'verify', 'dashboard', 'store', 'settings', 'admin'];
+        screens.forEach(s => document.getElementById('screen-' + s).classList.add('hidden'));
+        document.getElementById('screen-' + screenId).classList.remove('hidden');
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        if(document.getElementById('nav-' + screenId)) document.getElementById('nav-' + screenId).classList.add('active');
+        if(screenId === 'store') loadStoreItems();
+        if(screenId === 'admin') { loadAdminQueue(); loadAdminVerifications(); loadAdminStoreList(); }
+        if(screenId === 'settings') loadUserSettingsToForm();
+        window.scrollTo(0,0);
+    };
 
     function showError(elementId, msg) {
-        const el = document.getElementById(elementId);
-        el.innerText = msg;
-        el.style.display = 'block';
+        const el = document.getElementById(elementId); el.innerText = msg; el.style.display = 'block'; el.style.color = 'var(--danger)';
+        setTimeout(() => el.style.display = 'none', 4000);
+    }
+    function showSuccess(elementId, msg) {
+        const el = document.getElementById(elementId); el.innerText = msg; el.style.display = 'block'; el.style.color = 'var(--success)';
         setTimeout(() => el.style.display = 'none', 4000);
     }
 
-    function showSuccess(elementId, msg) {
-        const el = document.getElementById(elementId);
-        el.innerText = msg;
-        el.style.display = 'block';
-        el.style.color = 'var(--success)';
-        setTimeout(() => { el.style.display = 'none'; el.style.color = 'var(--danger)'; }, 4000);
+    function checkCaptcha() {
+        const cap = document.getElementById('auth-captcha').value.trim().toUpperCase();
+        if (cap !== expectedCaptcha) { window.generateCaptcha(); return false; }
+        return true;
     }
 
     // --- АВТОРИЗАЦИЯ И СЕССИЯ ---
-    document.getElementById('btn-register').addEventListener('click', async () => {
+    window.handleRegister = async () => {
+        if (!checkCaptcha()) return showError('auth-error', 'Неверный код с картинки!');
         const login = document.getElementById('auth-login').value.trim();
         const pass = document.getElementById('auth-pass').value.trim();
-
+        
         if (!login || !pass) return showError('auth-error', 'Заполните логин и пароль!');
-        if (login.includes('/') || login.includes('.') || login.includes('#')) {
-            return showError('auth-error', 'Логин содержит запрещенные символы!');
-        }
+        if (login.includes('/') || login.includes('.') || login.includes('#')) return showError('auth-error', 'Недопустимые символы в логине!');
 
         const userRef = ref(db, 'users/' + login);
         const snapshot = await get(userRef);
-
-        if (snapshot.exists()) return showError('auth-error', 'Пользователь с таким логином уже существует!');
+        if (snapshot.exists()) return showError('auth-error', 'Логин уже занят!');
 
         let role = 'user';
         if (login === 'HotSami' && pass === '101010_paR') role = 'admin';
 
-        const userData = { username: login, password: pass, role: role, level: 1, xp: 0, status: 'new' };
+        const userData = { username: login, password: pass, role: role, level: 1, xp: 0, status: 'new', privacy: 'all' };
         await set(userRef, userData);
-        loginUser(userData);
-    });
+        completeLogin(userData);
+    };
 
-    document.getElementById('btn-login').addEventListener('click', async () => {
+    window.handleLogin = async () => {
+        if (!checkCaptcha()) return showError('auth-error', 'Неверный код с картинки!');
         const login = document.getElementById('auth-login').value.trim();
         const pass = document.getElementById('auth-pass').value.trim();
-
+        
         if (!login || !pass) return showError('auth-error', 'Введите логин и пароль!');
 
         const userRef = ref(db, 'users/' + login);
@@ -587,13 +975,39 @@
         if (!snapshot.exists()) return showError('auth-error', 'Аккаунт не найден!');
         const data = snapshot.val();
         
-        if (data.status === 'banned') return showError('auth-error', 'Ваш аккаунт заблокирован администрацией!');
+        if (data.status === 'banned') return showError('auth-error', 'Аккаунт заблокирован!');
         if (data.password !== pass) return showError('auth-error', 'Неверный пароль!');
 
-        loginUser(data);
-    });
+        // Если есть ПИН, перекидываем на экран ввода
+        if (data.pin) {
+            tempAuthData = data;
+            document.getElementById('auth-main-view').classList.add('hidden');
+            document.getElementById('auth-pin-view').classList.remove('hidden');
+            document.getElementById('auth-pin-input').value = '';
+        } else {
+            completeLogin(data);
+        }
+    };
 
-    function loginUser(userData) {
+    window.verifyPinAndLogin = () => {
+        const enteredPin = document.getElementById('auth-pin-input').value.trim();
+        if(enteredPin === tempAuthData.pin) {
+            completeLogin(tempAuthData);
+        } else {
+            showError('auth-error', 'Неверный ПИН-код!');
+            document.getElementById('auth-pin-input').value = '';
+        }
+    };
+
+    window.cancelPinLogin = () => {
+        tempAuthData = null;
+        document.getElementById('auth-pin-view').classList.add('hidden');
+        document.getElementById('auth-main-view').classList.remove('hidden');
+        document.getElementById('auth-captcha').value = '';
+        window.generateCaptcha();
+    };
+
+    function completeLogin(userData) {
         currentUser = userData;
         localStorage.setItem('indigoSession', userData.username);
         
@@ -610,49 +1024,55 @@
             }
         });
 
-        hideAllScreens();
-        document.getElementById('screen-main').classList.remove('hidden');
-        loadLeaderboard();
-        loadMainFeed();
-        loadGlobalNews();
+        document.getElementById('screen-auth').classList.add('hidden');
+        document.getElementById('auth-pin-view').classList.add('hidden');
+        document.getElementById('auth-main-view').classList.remove('hidden');
+        document.getElementById('bottom-nav').classList.remove('hidden');
+        window.navTo('main');
+        
+        loadLeaderboard(); loadMainFeed(); loadGlobalNews();
     }
 
     window.onload = async () => {
         const loader = document.getElementById('initial-loader');
-        const savedSession = localStorage.getItem('indigoSession');
+        loadSettingsUI(); window.generateCaptcha();
         
+        const savedSession = localStorage.getItem('indigoSession');
         if (savedSession) {
             try {
                 const snapshot = await get(ref(db, 'users/' + savedSession));
                 if (snapshot.exists() && snapshot.val().status !== 'banned') {
-                    loginUser(snapshot.val());
-                } else {
-                    localStorage.removeItem('indigoSession');
-                    document.getElementById('screen-auth').classList.remove('hidden');
-                }
-            } catch (e) {
-                document.getElementById('screen-auth').classList.remove('hidden');
-            }
-        } else {
-            document.getElementById('screen-auth').classList.remove('hidden');
+                    // Если у пользователя есть ПИН, при автологине всё равно нужно его ввести
+                    if(snapshot.val().pin) {
+                        tempAuthData = snapshot.val();
+                        document.getElementById('auth-main-view').classList.add('hidden');
+                        document.getElementById('auth-pin-view').classList.remove('hidden');
+                    } else {
+                        completeLogin(snapshot.val());
+                    }
+                } else { localStorage.removeItem('indigoSession'); }
+            } catch (e) { console.error(e); }
         }
-        
-        loader.style.opacity = '0';
-        setTimeout(() => loader.style.display = 'none', 500);
+        loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 500);
     };
 
     document.getElementById('logout-btn').addEventListener('click', () => {
-        currentUser = null;
+        currentUser = null; tempAuthData = null;
         localStorage.removeItem('indigoSession');
-        hideAllScreens();
-        document.getElementById('auth-login').value = '';
-        document.getElementById('auth-pass').value = '';
+        document.getElementById('bottom-nav').classList.add('hidden');
+        const screens = ['main', 'verify', 'dashboard', 'store', 'settings', 'admin'];
+        screens.forEach(s => document.getElementById('screen-' + s).classList.add('hidden'));
+        document.getElementById('auth-login').value = ''; document.getElementById('auth-pass').value = ''; document.getElementById('auth-captcha').value = '';
+        window.switchAuthTab('login');
+        window.generateCaptcha();
         document.getElementById('screen-auth').classList.remove('hidden');
     });
 
-    // --- ГЛАВНЫЙ ЭКРАН ---
+    // --- ОБНОВЛЕНИЕ ГЛАВНОГО ЭКРАНА ---
     function updateMainScreenUI() {
+        document.getElementById('main-avatar').src = currentUser.avatar || 'https://via.placeholder.com/80/1e1b4b/60a5fa?text=?';
         document.getElementById('main-username').innerText = currentUser.username;
+        document.getElementById('main-bio').innerText = currentUser.bio || '';
         document.getElementById('main-level').innerText = currentUser.level;
         document.getElementById('main-xp').innerText = currentUser.xp;
 
@@ -661,131 +1081,148 @@
         if (currentUser.level >= 3) badgeHtml = '<span class="badge badge-lvl3">✔</span>';
         document.getElementById('main-badge').innerHTML = badgeHtml;
 
-        const btnVerify = document.getElementById('nav-btn-verify');
-        const btnAdmin = document.getElementById('nav-btn-admin');
+        const btnVerify = document.getElementById('btn-verify-top');
+        const navAdmin = document.getElementById('nav-admin');
         const statusText = document.getElementById('status-text');
 
-        btnVerify.classList.add('hidden');
-        btnAdmin.classList.add('hidden');
-        statusText.innerText = '';
+        btnVerify.classList.add('hidden'); navAdmin.classList.add('hidden'); statusText.innerText = '';
+        if (currentUser.role === 'admin') navAdmin.classList.remove('hidden');
 
-        if (currentUser.role === 'admin') btnAdmin.classList.remove('hidden');
-
-        if (currentUser.status === 'verified' || currentUser.level >= 2) {
-            statusText.innerText = 'Вы официальный креатор!';
-        } else if (currentUser.status === 'pending') {
-            statusText.innerText = 'Заявка на верификацию на рассмотрении...';
-            statusText.style.color = 'var(--gold)';
-        } else {
-            btnVerify.classList.remove('hidden');
-        }
+        if (currentUser.status === 'verified' || currentUser.level >= 2) statusText.innerText = 'Официальный креатор!';
+        else if (currentUser.status === 'pending') { statusText.innerText = 'Заявка на верификацию...'; statusText.style.color = 'var(--gold)'; }
+        else btnVerify.classList.remove('hidden');
     }
 
+    // --- ГЛОБАЛЬНЫЕ НОВОСТИ И ТАЙМЕР ---
     function loadGlobalNews() {
-        onValue(ref(db, 'system/news'), (snap) => {
+        onValue(ref(db, 'system/newsData'), (snap) => {
             const newsBox = document.getElementById('global-news');
-            if (snap.exists() && snap.val() !== '') {
-                newsBox.innerHTML = `<strong>ВАЖНО:</strong> ${snap.val()}`;
+            const newsText = document.getElementById('news-text');
+            const timerEl = document.getElementById('news-timer');
+            
+            if (timerInterval) clearInterval(timerInterval);
+
+            if (snap.exists()) {
+                const data = snap.val();
+                newsText.innerHTML = `<strong>ОБЪЯВЛЕНИЕ:</strong> ${data.text}`;
                 newsBox.classList.remove('hidden');
+
+                if(data.targetTime && data.targetTime > Date.now()) {
+                    timerEl.classList.remove('hidden');
+                    timerInterval = setInterval(() => {
+                        const diff = data.targetTime - Date.now();
+                        if(diff <= 0) {
+                            clearInterval(timerInterval);
+                            timerEl.innerText = "00:00:00";
+                            return;
+                        }
+                        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                        const m = Math.floor((diff / 1000 / 60) % 60);
+                        const s = Math.floor((diff / 1000) % 60);
+                        let timeStr = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                        if(d > 0) timeStr = `${d} дн. ` + timeStr;
+                        timerEl.innerText = timeStr;
+                    }, 1000);
+                } else {
+                    timerEl.classList.add('hidden');
+                }
             } else {
                 newsBox.classList.add('hidden');
             }
         });
     }
 
+    // --- ЛЕНТА И ЛИДЕРЫ (С кликабельными никами) ---
     function loadMainFeed() {
         onValue(ref(db, 'posts'), (snapshot) => {
             const list = document.getElementById('main-feed-list');
             list.innerHTML = '';
-            if (!snapshot.exists()) {
-                list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Пока нет публикаций. Будьте первыми!</p>';
-                return;
-            }
-
-            let postsArr = [];
-            snapshot.forEach(child => postsArr.push({ id: child.key, ...child.val() }));
-            postsArr.sort((a, b) => b.timestamp - a.timestamp); // Новые сверху
-
+            if (!snapshot.exists()) { list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Пока нет публикаций.</p>'; return; }
+            let postsArr = []; snapshot.forEach(child => postsArr.push({ id: child.key, ...child.val() }));
+            postsArr.sort((a, b) => b.timestamp - a.timestamp);
             postsArr.forEach(post => {
-                let badge = post.status === 'approved' ? '<span class="badge-approved">Одобрено админом ✓</span>' : '';
-                list.innerHTML += `
-                    <div class="data-row">
-                        <span class="post-author">${post.author} ${badge}</span>
-                        <div class="post-content">${post.content}</div>
-                    </div>
-                `;
+                let badge = post.status === 'approved' ? '<span class="badge-approved">Одобрено ✓</span>' : '';
+                list.innerHTML += `<div class="data-row">
+                    <span class="post-author clickable-nick" onclick="window.openProfile('${post.author}')">${post.author}</span> ${badge}
+                    <div class="post-content">${post.content}</div>
+                </div>`;
             });
         });
     }
 
     function loadLeaderboard() {
         onValue(ref(db, 'users'), (snapshot) => {
-            const list = document.getElementById('leaderboard-list');
-            list.innerHTML = '';
+            const list = document.getElementById('leaderboard-list'); list.innerHTML = '';
             if (!snapshot.exists()) return;
-
-            let usersArr = [];
-            snapshot.forEach(child => {
-                const u = child.val();
-                if(u.level > 1 || u.xp > 0) usersArr.push(u);
-            });
-
-            usersArr.sort((a, b) => {
-                if (b.level !== a.level) return b.level - a.level;
-                return b.xp - a.xp;
-            });
-
-            if (usersArr.length === 0) {
-                list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Пока нет креаторов с достижениями.</p>';
-                return;
-            }
-
+            let usersArr = []; snapshot.forEach(child => usersArr.push(child.val()));
+            usersArr.sort((a, b) => { if (b.level !== a.level) return b.level - a.level; return b.xp - a.xp; });
             usersArr.forEach(u => {
                 let badge = '';
                 if(u.level === 2) badge = '<span class="badge badge-lvl2">✓</span>';
                 if(u.level >= 3) badge = '<span class="badge badge-lvl3">✔</span>';
-
-                list.innerHTML += `
-                    <div class="data-row">
-                        <strong style="color: var(--primary); font-size: 16px;">${u.username} ${badge}</strong>
-                        <div style="font-size: 13px; color: var(--text-muted); margin-top: 5px; font-weight: 600;">
-                            Уровень: <span style="color: var(--accent);">${u.level}</span> | Опыт: <span style="color: var(--success);">${u.xp} XP</span>
-                        </div>
+                list.innerHTML += `<div class="data-row">
+                    <strong class="clickable-nick" style="color: var(--primary); font-size: 16px;" onclick="window.openProfile('${u.username}')">${u.username}</strong> ${badge}
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 5px; font-weight: 600;">
+                        Уровень: <span style="color: var(--accent);">${u.level}</span> | Опыт: <span style="color: var(--success);">${u.xp} XP</span>
                     </div>
-                `;
+                </div>`;
             });
         });
     }
 
-    // --- НАВИГАЦИЯ ---
-    document.getElementById('nav-btn-verify').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-verify').classList.remove('hidden'); });
-    document.getElementById('nav-btn-dashboard').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-dashboard').classList.remove('hidden'); });
-    document.getElementById('nav-btn-admin').addEventListener('click', () => { 
-        hideAllScreens(); 
-        document.getElementById('screen-admin').classList.remove('hidden');
-        loadAdminQueue();
-        loadAdminVerifications();
-    });
-    document.getElementById('btn-back-from-verify').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-main').classList.remove('hidden'); });
-    document.getElementById('btn-back-from-dash').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-main').classList.remove('hidden'); });
-    document.getElementById('btn-back-from-admin').addEventListener('click', () => { hideAllScreens(); document.getElementById('screen-main').classList.remove('hidden'); });
+    // --- МАГАЗИН (STORE) ---
+    function loadStoreItems() {
+        onValue(ref(db, 'store'), (snapshot) => {
+            const list = document.getElementById('store-items-list'); list.innerHTML = '';
+            if (!snapshot.exists()) { list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Магазин пока пуст.</p>'; return; }
+            let hasItems = false;
+            snapshot.forEach(child => {
+                const item = child.val(); const itemId = child.key;
+                if (item.levels && item.levels.includes(currentUser.level)) {
+                    hasItems = true;
+                    let imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" class="store-img" alt="Товар">` : '';
+                    let priceText = `${item.price} ${item.currency}`;
+                    list.innerHTML += `<div class="store-item">${imgHtml}<div class="store-title">${item.title}</div>
+                        <div class="store-price">${priceText}</div><div class="store-levels">Требуемый уровень: ${item.levels.join(', ')}</div>
+                        <button class="btn-success" onclick="window.buyStoreItem('${itemId}')">Приобрести</button></div>`;
+                }
+            });
+            if (!hasItems) list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Для вашего уровня пока нет товаров.</p>';
+        });
+    }
+
+    window.buyStoreItem = async (itemId) => {
+        const itemRef = ref(db, 'store/' + itemId); const snap = await get(itemRef);
+        if (!snap.exists()) return alert('Товар не найден'); const item = snap.val();
+        const modal = document.getElementById('purchase-modal'); const mTitle = document.getElementById('pm-title');
+        const mDesc = document.getElementById('pm-desc'); const mInst = document.getElementById('pm-instructions');
+        mTitle.innerText = `Покупка: ${item.title}`;
+
+        if (item.currency === 'XP') {
+            const uRef = ref(db, 'users/' + currentUser.username); const uSnap = await get(uRef); let uData = uSnap.val();
+            if (uData.xp < item.price) return alert('Недостаточно опыта (XP)!');
+            if (confirm(`Подтверждаете покупку за ${item.price} XP?`)) {
+                await update(uRef, { xp: uData.xp - item.price });
+                mDesc.innerText = `✅ Успешно! Списано ${item.price} XP.`;
+                mInst.innerHTML = `<strong>Свяжитесь с администрацией:</strong><br><br>
+                                   Приложение: <strong style="color:var(--accent)">${item.contactApp}</strong><br>
+                                   Контакт: <strong style="color:var(--accent)">${item.contactInfo}</strong><br><br>Назовите свой логин (${currentUser.username}).`;
+                modal.classList.remove('hidden');
+            }
+        } else {
+            mDesc.innerText = `К оплате: ${item.price} ${item.currency}`;
+            mInst.innerHTML = `<strong>Способ оплаты:</strong> ${item.paymentMethod}<br><br><strong>Инструкция:</strong><br>1. Совершите перевод.<br>2. Сохраните чек.<br>3. Напишите в <strong style="color:var(--accent)">${item.contactApp}</strong> (${item.contactInfo}) и отправьте чек с вашим логином.`;
+            modal.classList.remove('hidden');
+        }
+    }
 
     // --- ПУБЛИКАЦИЯ ---
     document.getElementById('btn-send-post').addEventListener('click', async () => {
         const text = document.getElementById('post-text').value.trim();
         if (!text) return;
-
-        await push(ref(db, 'posts'), {
-            author: currentUser.username,
-            content: text,
-            timestamp: Date.now(),
-            status: 'new'
-        });
-
-        document.getElementById('post-text').value = '';
-        alert("Ваша работа опубликована в общей ленте!");
-        hideAllScreens();
-        document.getElementById('screen-main').classList.remove('hidden');
+        await push(ref(db, 'posts'), { author: currentUser.username, content: text, timestamp: Date.now(), status: 'new' });
+        document.getElementById('post-text').value = ''; alert("Опубликовано! Ждите проверки."); window.navTo('main');
     });
 
     // --- ВЕРИФИКАЦИЯ ---
@@ -794,165 +1231,123 @@
         const subs = parseInt(document.getElementById('ver-subs').value) || 0;
         const age = parseInt(document.getElementById('ver-age').value) || 0;
         const rulesAgreed = document.getElementById('ver-rules').checked;
-
         if (!tiktok || !subs || !age) return showError('verify-error', 'Заполните все поля!');
-        if (!rulesAgreed) return showError('verify-error', 'Вы должны согласиться с правилами!');
-        if (subs < 1000) return showError('verify-error', 'Отказ: Необходимо минимум 1 000 подписчиков!');
-
-        await update(ref(db, 'users/' + currentUser.username), {
-            status: 'pending', tiktokLink: tiktok, subsCount: subs, age: age
-        });
-
+        if (!rulesAgreed) return showError('verify-error', 'Согласитесь с правилами!');
+        if (subs < 10000) return showError('verify-error', 'Минимум 10,000 подписчиков!');
+        await update(ref(db, 'users/' + currentUser.username), { status: 'pending', tiktokLink: tiktok, subsCount: subs, age: age });
         document.getElementById('verify-result').classList.remove('hidden');
-        document.getElementById('verify-error').style.display = 'none';
-        document.getElementById('btn-send-verify').classList.add('hidden');
+        document.getElementById('verify-error').style.display = 'none'; document.getElementById('btn-send-verify').classList.add('hidden');
     });
 
     // --- ПАНЕЛЬ АДМИНА ---
+    window.adminSetNews = async () => {
+        const text = document.getElementById('admin-news-text').value.trim();
+        const timeInput = document.getElementById('admin-news-time').value;
+        let targetTime = null;
+        if(timeInput) { targetTime = new Date(timeInput).getTime(); }
+
+        if (text) {
+            await set(ref(db, 'system/newsData'), { text: text, targetTime: targetTime });
+            document.getElementById('admin-news-text').value = '';
+            document.getElementById('admin-news-time').value = '';
+            alert('Опубликовано!');
+        }
+    };
+    
+    window.adminClearNews = async () => { await remove(ref(db, 'system/newsData')); alert('Удалено!'); };
+
+    window.adminCreateStoreItem = async () => {
+        const title = document.getElementById('admin-store-title').value.trim();
+        const imgUrl = document.getElementById('admin-store-img').value.trim();
+        const price = parseInt(document.getElementById('admin-store-price').value) || 0;
+        const currency = document.getElementById('admin-store-currency').value;
+        const payMethod = document.getElementById('admin-store-paymethod').value.trim();
+        const contactApp = document.getElementById('admin-store-contact-app').value;
+        const contactInfo = document.getElementById('admin-store-contact-info').value.trim();
+        let allowedLevels = [];
+        if(document.getElementById('store-lvl1').checked) allowedLevels.push(1);
+        if(document.getElementById('store-lvl2').checked) allowedLevels.push(2);
+        if(document.getElementById('store-lvl3').checked) allowedLevels.push(3);
+
+        if (!title || price <= 0 || !payMethod || allowedLevels.length === 0 || !contactInfo) return alert("Заполните поля!");
+        await push(ref(db, 'store'), { title, imgUrl, price, currency, paymentMethod: payMethod, contactApp, contactInfo, levels: allowedLevels, timestamp: Date.now() });
+        alert("Товар добавлен!");
+    };
+    window.adminDeleteStoreItem = async (itemId) => { if(confirm("Удалить?")) await remove(ref(db, 'store/' + itemId)); };
+
+    function loadAdminStoreList() {
+        onValue(ref(db, 'store'), (snapshot) => {
+            const list = document.getElementById('admin-store-list'); list.innerHTML = '';
+            if (!snapshot.exists()) return;
+            snapshot.forEach(child => {
+                const item = child.val();
+                list.innerHTML += `<div class="data-row"><strong>${item.title}</strong> (${item.price} ${item.currency})<br>
+                <button class="btn-danger" style="margin-top: 10px;" onclick="window.adminDeleteStoreItem('${child.key}')">Удалить</button></div>`;
+            });
+        });
+    }
+
     function loadAdminVerifications() {
         onValue(ref(db, 'users'), (snapshot) => {
-            const list = document.getElementById('admin-verify-list');
-            list.innerHTML = '';
-            let hasPending = false;
-            
+            const list = document.getElementById('admin-verify-list'); list.innerHTML = '';
             if (!snapshot.exists()) return;
-
             snapshot.forEach(child => {
                 const u = child.val();
                 if (u.status === 'pending') {
-                    hasPending = true;
-                    list.innerHTML += `
-                        <div class="data-row">
-                            <span class="post-author">Юзер: ${u.username}</span>
-                            <div class="post-content">
-                                <strong>TikTok:</strong> ${u.tiktokLink}<br>
-                                <strong>Подписчики:</strong> ${u.subsCount}<br>
-                                <strong>Возраст:</strong> ${u.age}
-                            </div>
-                            <div class="admin-controls">
-                                <button class="btn-success" onclick="window.adminApproveVerify('${u.username}')">Одобрить (Ур. 1)</button>
-                                <button class="btn-danger" onclick="window.adminRejectVerify('${u.username}')">Отклонить</button>
-                            </div>
-                        </div>
-                    `;
+                    list.innerHTML += `<div class="data-row"><span class="post-author">${u.username}</span>
+                    <div class="admin-controls"><button class="btn-success" onclick="window.adminApproveVerify('${u.username}')">Одобрить</button><button class="btn-danger" onclick="window.adminRejectVerify('${u.username}')">Отказ</button></div></div>`;
                 }
             });
-            if (!hasPending) list.innerHTML = '<p>Нет новых заявок.</p>';
         });
     }
 
     function loadAdminQueue() {
         onValue(ref(db, 'posts'), (snapshot) => {
-            const list = document.getElementById('admin-queue-list');
-            list.innerHTML = '';
-            if (!snapshot.exists()) {
-                list.innerHTML = '<p>Нет публикаций.</p>';
-                return;
-            }
-
-            let postsArr = [];
-            snapshot.forEach(child => postsArr.push({ id: child.key, ...child.val() }));
-            postsArr.sort((a, b) => b.timestamp - a.timestamp);
-
-            postsArr.forEach(post => {
-                const isAppr = post.status === 'approved';
-                const btnHtml = isAppr 
-                    ? `<button class="btn-secondary" disabled>Уже одобрено</button>` 
-                    : `<button class="btn-success" onclick="window.adminApprovePost('${post.id}', '${post.author}')">Одобрить (+20 XP)</button>`;
-                
-                list.innerHTML += `
-                    <div class="data-row">
-                        <span class="post-author">Автор: ${post.author}</span>
-                        <div class="post-content">${post.content}</div>
-                        <div class="admin-controls">
-                            ${btnHtml}
-                            <button class="btn-danger" onclick="window.adminRejectPost('${post.id}')">Удалить</button>
-                        </div>
-                    </div>
-                `;
+            const list = document.getElementById('admin-queue-list'); list.innerHTML = '';
+            if (!snapshot.exists()) return;
+            snapshot.forEach(child => {
+                const p = child.val();
+                if(p.status !== 'approved') {
+                    list.innerHTML += `<div class="data-row"><span class="post-author">${p.author}</span><div class="post-content">${p.content}</div>
+                    <div class="admin-controls"><button class="btn-success" onclick="window.adminApprovePost('${child.key}', '${p.author}')">Одобрить (+20XP)</button><button class="btn-danger" onclick="window.adminRejectPost('${child.key}')">Удалить</button></div></div>`;
+                }
             });
         });
     }
 
-    // Глобальные методы админки
-    window.adminApproveVerify = async (username) => await update(ref(db, 'users/' + username), { status: 'verified', level: 1 });
+    window.adminApproveVerify = async (username) => await update(ref(db, 'users/' + username), { status: 'verified', level: 3 });
     window.adminRejectVerify = async (username) => await update(ref(db, 'users/' + username), { status: 'new' });
-    
     window.adminApprovePost = async (postId, authorName) => {
         await update(ref(db, 'posts/' + postId), { status: 'approved' });
-        const uRef = ref(db, 'users/' + authorName);
-        const snap = await get(uRef);
-        if (snap.exists()) await update(uRef, { xp: (snap.val().xp || 0) + 20 });
+        const snap = await get(ref(db, 'users/' + authorName));
+        if (snap.exists()) await update(ref(db, 'users/' + authorName), { xp: (snap.val().xp || 0) + 20 });
     };
     window.adminRejectPost = async (postId) => await remove(ref(db, 'posts/' + postId));
 
-    window.adminSetNews = async () => {
-        const text = document.getElementById('admin-news-text').value.trim();
-        if (text) {
-            await set(ref(db, 'system/news'), text);
-            document.getElementById('admin-news-text').value = '';
-            showSuccess('admin-action-msg', 'Объявление опубликовано!');
-        }
-    };
-    window.adminClearNews = async () => {
-        await remove(ref(db, 'system/news'));
-        showSuccess('admin-action-msg', 'Объявление удалено!');
-    };
-
     window.adminSetLevel = async (newLevel) => {
         const t = document.getElementById('admin-target-user').value.trim();
-        if (!t) return showError('admin-action-msg', 'Введите логин!');
-        const uRef = ref(db, 'users/' + t);
-        const snap = await get(uRef);
-        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
-        await update(uRef, { level: newLevel, status: newLevel >= 2 ? 'verified' : snap.val().status });
-        showSuccess('admin-action-msg', `Уровень ${newLevel} выдан!`);
+        if (!t) return; const uRef = ref(db, 'users/' + t); const snap = await get(uRef);
+        if (!snap.exists()) return alert('Не найден!'); await update(uRef, { level: newLevel, status: newLevel >= 2 ? 'verified' : snap.val().status }); alert(`Уровень ${newLevel} выдан!`);
     };
-
     window.adminAddXP = async (amount) => {
         const t = document.getElementById('admin-target-user').value.trim();
-        if (!t) return showError('admin-action-msg', 'Введите логин!');
-        const uRef = ref(db, 'users/' + t);
-        const snap = await get(uRef);
-        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
-        let newXp = (snap.val().xp || 0) + amount;
-        if (newXp < 0) newXp = 0;
-        await update(uRef, { xp: newXp });
-        showSuccess('admin-action-msg', `XP изменено!`);
+        if (!t) return; const uRef = ref(db, 'users/' + t); const snap = await get(uRef);
+        if (!snap.exists()) return alert('Не найден!'); let newXp = (snap.val().xp || 0) + amount; if(newXp<0)newXp=0; await update(uRef, { xp: newXp }); alert('Опыт изменен!');
     };
-
     window.adminMakeAdmin = async () => {
         const t = document.getElementById('admin-target-user').value.trim();
-        if (!t) return showError('admin-action-msg', 'Введите логин!');
-        const uRef = ref(db, 'users/' + t);
-        const snap = await get(uRef);
-        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
-        await update(uRef, { role: 'admin' });
-        showSuccess('admin-action-msg', `Права админа выданы!`);
+        if (!t) return; const uRef = ref(db, 'users/' + t); const snap = await get(uRef);
+        if (!snap.exists()) return alert('Не найден!'); await update(uRef, { role: 'admin' }); alert('Права выданы!');
     };
-
     window.adminBanUser = async () => {
         const t = document.getElementById('admin-target-user').value.trim();
-        if (!t) return showError('admin-action-msg', 'Введите логин!');
-        const uRef = ref(db, 'users/' + t);
-        const snap = await get(uRef);
-        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
-        if (snap.val().role === 'admin') return showError('admin-action-msg', 'Нельзя забанить админа!');
-        await update(uRef, { status: 'banned' });
-        showSuccess('admin-action-msg', `Пользователь заблокирован!`);
+        if (!t) return; const uRef = ref(db, 'users/' + t); const snap = await get(uRef);
+        if (snap.val().role === 'admin') return alert('Нельзя забанить админа!'); await update(uRef, { status: 'banned' }); alert('Забанен!');
     };
-
     window.adminUnbanUser = async () => {
         const t = document.getElementById('admin-target-user').value.trim();
-        if (!t) return showError('admin-action-msg', 'Введите логин!');
-        const uRef = ref(db, 'users/' + t);
-        const snap = await get(uRef);
-        if (!snap.exists()) return showError('admin-action-msg', 'Не найден!');
-        await update(uRef, { status: 'new' });
-        showSuccess('admin-action-msg', `Пользователь разблокирован!`);
+        if (!t) return; const uRef = ref(db, 'users/' + t); await update(uRef, { status: 'new' }); alert('Разбанен!');
     };
-
 </script>
-
 </body>
 </html>
