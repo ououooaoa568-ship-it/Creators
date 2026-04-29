@@ -1139,7 +1139,10 @@
             const list = document.getElementById('main-feed-list');
             list.innerHTML = '';
             if (!snapshot.exists()) { list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Пока нет публикаций.</p>'; return; }
-            let postsArr = []; snapshot.forEach(child => postsArr.push({ id: child.key, ...child.val() }));
+            let postsArr = []; 
+            snapshot.forEach(child => { 
+                postsArr.push({ id: child.key, ...child.val() }); 
+            });
             postsArr.sort((a, b) => b.timestamp - a.timestamp);
             postsArr.forEach(post => {
                 let badge = post.status === 'approved' ? '<span class="badge-approved">Одобрено ✓</span>' : '';
@@ -1155,8 +1158,18 @@
         onValue(ref(db, 'users'), (snapshot) => {
             const list = document.getElementById('leaderboard-list'); list.innerHTML = '';
             if (!snapshot.exists()) return;
-            let usersArr = []; snapshot.forEach(child => usersArr.push(child.val()));
-            usersArr.sort((a, b) => { if (b.level !== a.level) return b.level - a.level; return b.xp - a.xp; });
+            let usersArr = []; 
+            snapshot.forEach(child => { 
+                usersArr.push(child.val()); 
+            });
+            usersArr.sort((a, b) => { 
+                let lvlA = a.level || 0; 
+                let lvlB = b.level || 0; 
+                let xpA = a.xp || 0; 
+                let xpB = b.xp || 0; 
+                if (lvlB !== lvlA) return lvlB - lvlA; 
+                return xpB - xpA; 
+            });
             usersArr.forEach(u => {
                 let badge = '';
                 if(u.level === 2) badge = '<span class="badge badge-lvl2">✓</span>';
